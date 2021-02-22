@@ -1,5 +1,5 @@
 package agentes;
 
-public class O07 {
+public class Agente007 {
 
 }
