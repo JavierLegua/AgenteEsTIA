@@ -2,26 +2,30 @@ package agentes;
 
 public final class Espionaje extends Agente {
 
-	protected int pisos;
+	protected String[] vPisos;
 
-	public Espionaje(String nombre, int edad, String direccion, double salario, int pisos) {
+	public Espionaje(String nombre, int edad, String direccion, double salario) {
 		super(nombre, edad, direccion, salario);
-		this.pisos = pisos;
+		this.vPisos = iodatos.IOdatos.cargar;
 	}
 
-	public int getPisos() {
-		return pisos;
+	public String[] getvPisos() {
+		return vPisos;
 	}
 
-	public void setPisos(int pisos) {
-		this.pisos = pisos;
+	public void setvPisos(String[] vPisos) {
+		this.vPisos = vPisos;
 	}
 
 	@Override
 	public String toString() {
-		return "Espionaje [pisos=" + pisos + "]";
+		String piso = "";
+		for (String x : vPisos) {
+			if (x != null) {
+				x += vPisos;
+			}
+		}
+		return "Espionaje [pisos=" + piso + "]";
 	}
-	
-	
-	
+
 }

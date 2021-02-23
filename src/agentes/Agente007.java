@@ -3,12 +3,12 @@ package agentes;
 public final class Agente007 extends Agente {
 
 	protected int numBajas;
-	protected int numArmas;
-	
+	protected String[] vArmas;
+
 	public Agente007(String nombre, int edad, String direccion, double salario, int numBajas, int numArmas) {
 		super(nombre, edad, direccion, salario);
 		this.numBajas = numBajas;
-		this.numArmas = numArmas;
+		this.vArmas = iodatos.IOdatos.cargar;
 	}
 
 	public int getNumBajas() {
@@ -19,19 +19,23 @@ public final class Agente007 extends Agente {
 		this.numBajas = numBajas;
 	}
 
-	public int getNumArmas() {
-		return numArmas;
+	public String[] getvArmas() {
+		return vArmas;
 	}
 
-	public void setNumArmas(int numArmas) {
-		this.numArmas = numArmas;
+	public void setvArmas(String[] vArmas) {
+		this.vArmas = vArmas;
 	}
 
 	@Override
 	public String toString() {
-		return "Agente007 [numBajas=" + numBajas + ", numArmas=" + numArmas + "]";
+		String armas= "";
+		for (String x : vArmas) {
+			if (x != null) {
+				armas += x + "\n";
+			}
+		}
+		return "Agente007 [numBajas=" + numBajas + ", Armas: " + armas + "]";
 	}
-	
-	
-	
+
 }
