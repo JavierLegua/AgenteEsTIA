@@ -6,7 +6,7 @@ public final class Espionaje extends Agente {
 
 	public Espionaje(String nombre, int edad, String direccion, double salario) {
 		super(nombre, edad, direccion, salario);
-		this.vPisos = iodatos.IOdatos.cargar;
+		this.vPisos = iodatos.IOdatos.cargarDatosFicherosTexto("Pisos.txt");;
 	}
 
 	public String[] getvPisos() {

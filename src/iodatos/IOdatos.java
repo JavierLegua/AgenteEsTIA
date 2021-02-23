@@ -1,5 +1,9 @@
 package iodatos;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class IOdatos {
@@ -33,9 +37,39 @@ public class IOdatos {
 		return num;
 		}
 			
-		
+		public static String[] cargarDatosFicherosTexto(String rutaFichero) {
+			String[] vector = new String[10];
+			
+			File f = new File(rutaFichero);
+			
+			if (!f.exists()) {
+				try {
+					f.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			try (FileReader fr = new FileReader(f);
+				Scanner leer = new Scanner(fr);){
+				
+				int cont = 0;
+				while (leer.hasNext()) {
+					String linea = leer.nextLine();
+					vector[cont] = linea;
+					cont++;
+				}
+				
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+			return vector;
+		}
 	
-
+		
 }
 
 

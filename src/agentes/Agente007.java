@@ -5,10 +5,12 @@ public final class Agente007 extends Agente {
 	protected int numBajas;
 	protected String[] vArmas;
 
-	public Agente007(String nombre, int edad, String direccion, double salario, int numBajas, int numArmas) {
+	
+
+	public Agente007(String nombre, int edad, String direccion, double salario, int numBajas) {
 		super(nombre, edad, direccion, salario);
 		this.numBajas = numBajas;
-		this.vArmas = iodatos.IOdatos.cargar;
+		this.vArmas = iodatos.IOdatos.cargarDatosFicherosTexto("Armas.txt");
 	}
 
 	public int getNumBajas() {
@@ -35,7 +37,7 @@ public final class Agente007 extends Agente {
 				armas += x + "\n";
 			}
 		}
-		return "Agente007 [numBajas=" + numBajas + ", Armas: " + armas + "]";
+		return "Agente007 [numBajas=" + numBajas + ", \nArmas: \n" + armas + "]";
 	}
 
 }
