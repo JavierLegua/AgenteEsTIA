@@ -1,6 +1,8 @@
 package agentes;
 
-public final class Agente007 extends Agente {
+import java.io.Serializable;
+
+public final class Agente007 extends Agente implements Serializable{
 
 	protected int numBajas;
 	protected String[] vArmas;
@@ -37,7 +39,7 @@ public final class Agente007 extends Agente {
 				armas += x + "\n";
 			}
 		}
-		return "Agente007 [numBajas=" + numBajas + ", \nArmas: \n" + armas + "]";
+		return "Agente007\nNumero de Bajas=" + numBajas + " \nArmas: \n" + armas;
 	}
 
 }

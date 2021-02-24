@@ -1,6 +1,8 @@
 package agentes;
 
-public final class Espionaje extends Agente {
+import java.io.Serializable;
+
+public final class Espionaje extends Agente implements Serializable {
 
 	protected String[] vPisos;
 
@@ -25,7 +27,8 @@ public final class Espionaje extends Agente {
 				x += vPisos;
 			}
 		}
-		return "Espionaje [pisos=" + piso + "]";
+		return "Espionaje \nNumero de pisos ->" + piso + "\n"
+				+"************";
 	}
 
 }
