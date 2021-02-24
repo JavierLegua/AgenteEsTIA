@@ -1,6 +1,8 @@
 package agentes;
 
-public class Agente {
+import java.io.Serializable;
+
+public class Agente implements Serializable{
 
 	protected String nombre;
 	protected int edad;

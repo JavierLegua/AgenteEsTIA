@@ -1,6 +1,8 @@
 package agentes;
 
-public final class Jefazo extends Agente {
+import java.io.Serializable;
+
+public final class Jefazo extends Agente implements Serializable{
 
 	protected int AñosMandato;
 

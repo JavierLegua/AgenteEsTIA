@@ -10,18 +10,26 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Agente[] vAgentes = new Agente[10];
-		//vAgentes[0] = new Jefazo("pepe", 58, "calle", 5000, 15);
+		/*Agente[] vAgentes = new Agente[10];
+		vAgentes[0] = new Jefazo("pepe", 58, "calle", 5000, 15);
 		vAgentes[1] = new Espionaje("juan", 36, "calle1", 15000);
 		vAgentes[2] = new Agente007("pascual", 57, "calle2", 2500, 150);
 		
-		/*
 		 for (Agente a : vAgentes) {
 			if (a != null) {
 				System.out.println(a);
 			}
 		}
+		
 		*/
+		
+		Agente[] vAgentes = iodatos.IOdatos.DesencriptarInfo("agentes.dat");
+		
+		for (int i = 0; i < vAgentes.length; i++) {
+			if (vAgentes[i] != null) {
+				System.out.println(vAgentes[i]);
+			}
+		}
 		
 		
 		int opc = IOdatos.pintarMenu();
