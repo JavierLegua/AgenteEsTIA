@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import agentes.Agente;
+
 public class IOdatos {
 	
 	public static int pintarMenu () {
@@ -102,8 +104,26 @@ public class IOdatos {
 			
 			return vector;
 		}
-	
+		public static void salario (Agente[] vAgentes) {
+			Scanner leer = new Scanner(System.in);
+			int filtrado = 0;
+			
+			System.out.println("Busca agentes por su salario");
+			System.out.println("Se mostraran los agentes que su salario sea mayor de:");
+			System.out.println("Escribe un numero");
+			filtrado=leer.nextInt();
+			
+			for(int i =0;i<vAgentes.length;i++) {
+			if((vAgentes[i]!=null)&&(filtrado<vAgentes[i].getSalario())) {
+				System.out.println(vAgentes[i].getNombre()+" "+vAgentes[i].getSalario());
+				
+			}
+			}
+				
 		
+			
+		
+}
 }
 
 
