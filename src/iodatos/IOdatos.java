@@ -1,5 +1,7 @@
 package iodatos;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -133,7 +135,7 @@ public class IOdatos {
 	}
 
 	public static Agente[] DesencriptarInfo(String rutaFichero) {
-		
+
 		Agente[] vector = new Agente[10];
 		int cont = 0;
 
@@ -146,15 +148,14 @@ public class IOdatos {
 				e.printStackTrace();
 			}
 		}
-		
-		try (FileInputStream fi = new FileInputStream(f);
-				ObjectInputStream leer = new ObjectInputStream(fi)){
-		
-			while(true) {
-			vector[cont] = (Agente) leer.readObject();
-			cont++;
+
+		try (FileInputStream fi = new FileInputStream(f); ObjectInputStream leer = new ObjectInputStream(fi)) {
+
+			while (true) {
+				vector[cont] = (Agente) leer.readObject();
+				cont++;
 			}
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
@@ -162,28 +163,89 @@ public class IOdatos {
 		} catch (ClassNotFoundException e) {
 			System.out.println("Has terminado de leer el fichero.");
 		}
-		
+
 		return vector;
 	}
 
-		public static void salario (Agente[] vAgentes) {
-			Scanner leer = new Scanner(System.in);
-			int filtrado = 0;
-			
-			System.out.println("Busca agentes por su salario");
-			System.out.println("Se mostraran los agentes que su salario sea mayor de:");
-			System.out.println("Escribe un numero");
-			filtrado=leer.nextInt();
-			
-			for(int i =0;i<vAgentes.length;i++) {
-			if((vAgentes[i]!=null)&&(filtrado<vAgentes[i].getSalario())) {
-				System.out.println(vAgentes[i].getNombre()+" "+vAgentes[i].getSalario());
-				
+	public static void EncriptarArmasPisos(String rutaFichero) {
+
+		File f = new File(rutaFichero);
+
+		if (!f.exists()) {
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+
+		}
+
+		try (FileOutputStream fo = new FileOutputStream(f); DataOutputStream escribir = new DataOutputStream(fo)) {
+
+			String vDatos[] = cargarDatosFicherosTexto(rutaFichero);
+
+			for (String s : vDatos) {
+				if (s != null) {
+					escribir.writeUTF(s);
+				}
 			}
-				
-		
-			
-		
-}
+			f.delete();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+	}
+
+	public static String[] DesencriptarPisoArma(String rutaFichero) {
+
+		String[] vector = new String[10];
+		int cont = 0;
+
+		File f = new File(rutaFichero);
+
+		if (!f.exists()) {
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		try (FileInputStream fi = new FileInputStream(f); DataInputStream leer = new DataInputStream(fi)) {
+
+			while (true) {
+				vector[cont] = leer.readUTF();
+				cont++;
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		return vector;
+	}
+
+	public static void salario(Agente[] vAgentes) {
+		Scanner leer = new Scanner(System.in);
+		int filtrado = 0;
+
+		System.out.println("Busca agentes por su salario");
+		System.out.println("Se mostraran los agentes que su salario sea mayor de:");
+		System.out.println("Escribe un numero");
+		filtrado = leer.nextInt();
+
+		for (int i = 0; i < vAgentes.length; i++) {
+			if ((vAgentes[i] != null) && (filtrado < vAgentes[i].getSalario())) {
+				System.out.println(vAgentes[i].getNombre() + " " + vAgentes[i].getSalario());
+
+			}
+		}
+
+	}
 }

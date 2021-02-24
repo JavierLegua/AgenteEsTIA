@@ -28,7 +28,7 @@ public final class Espionaje extends Agente implements Serializable {
 			}
 		}
 		return "Espionaje \nNumero de pisos ->" + piso + "\n"
-				+"************";
+				+ "************";
 	}
 
 }

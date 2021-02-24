@@ -2,13 +2,13 @@ package agentes;
 
 import java.io.Serializable;
 
-public class Agente implements Serializable{
+public class Agente implements Serializable {
 
 	protected String nombre;
 	protected int edad;
 	protected String direccion;
 	protected double salario;
-	
+
 	public Agente(String nombre, int edad, String direccion, double salario) {
 		this.nombre = nombre;
 		this.edad = edad;
@@ -54,6 +54,4 @@ public class Agente implements Serializable{
 				+ "]";
 	}
 
-	
-	
 }
