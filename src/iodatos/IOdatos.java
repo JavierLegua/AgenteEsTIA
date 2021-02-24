@@ -61,6 +61,10 @@ public class IOdatos {
 				System.out.println("Que arma quieres aÃ±adir");
 				String arma = leer.next();
 				escribir.println(arma);
+			}else {
+				System.out.println("Que piso quieres añadir?");
+				String piso = leer.next();
+				escribir.println(piso);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
