@@ -15,15 +15,6 @@ public class Main {
 		vAgentes[1] = new Espionaje("juan", 36, "calle1", 15000);
 		vAgentes[2] = new Agente007("pascual", 57, "calle2", 2500, 150);
 		
-		//int opc = IOdatos.pintarMenu();
-		int opc = IOdatos.pintarMenu();
-		do {
-		
-		switch (opc) {
-		case 1:
-			
-			break;
-
 		/*
 		 for (Agente a : vAgentes) {
 			if (a != null) {
@@ -31,6 +22,15 @@ public class Main {
 			}
 		}
 		*/
+		
+		
+		int opc = IOdatos.pintarMenu();
+		do {
+		
+		switch (opc) {
+		case 1:
+			
+			break;
 		case 2:
 			
 			break;
