@@ -23,7 +23,7 @@ public class Main {
 		
 		*/
 		
-		iodatos.IOdatos.EncriptarArmasPisos();
+		iodatos.IOdatos.cargarDatosFicherosTexto("Armas.txt");
 
 
 		int opc = IOdatos.pintarMenu();

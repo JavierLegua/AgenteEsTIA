@@ -66,7 +66,7 @@ public class IOdatos {
 				String arma = leer.next();
 				escribir.println(arma);
 			} else {
-				System.out.println("Que piso quieres a�adir?");
+				System.out.println("Que piso quieres añadir?");
 				String piso = leer.next();
 				escribir.println(piso);
 			}
@@ -76,7 +76,9 @@ public class IOdatos {
 	}
 
 	public static String[] cargarDatosFicherosTexto(String rutaFichero) {
-		String[] vector = new String[10];
+		
+		String[] vDatos = new String[10];
+		int cont = 0;
 
 		File f = new File(rutaFichero);
 
@@ -90,10 +92,9 @@ public class IOdatos {
 
 		try (FileReader fr = new FileReader(f); Scanner leer = new Scanner(fr);) {
 
-			int cont = 0;
 			while (leer.hasNext()) {
 				String linea = leer.nextLine();
-				vector[cont] = linea;
+				vDatos[cont] = linea;
 				cont++;
 			}
 
@@ -103,7 +104,7 @@ public class IOdatos {
 			e1.printStackTrace();
 		}
 
-		return vector;
+		return vDatos;
 	}
 
 	public static void EncriptarInfo(String rutaFichero, Agente vAgentes[]) {
@@ -169,7 +170,7 @@ public class IOdatos {
 
 	public static void EncriptarArmasPisos() {
 
-		File f = new File("armas.txt");
+		File f = new File("Armas.dat");
 
 		if (!f.exists()) {
 			try {
@@ -180,7 +181,7 @@ public class IOdatos {
 
 		}
 		
-		File fp = new File("pisos.txt");
+		File fp = new File("Pisos.dat");
 
 		if (!fp.exists()) {
 			try {
@@ -192,39 +193,45 @@ public class IOdatos {
 		}
 
 		try (FileOutputStream fo = new FileOutputStream(f); DataOutputStream escribir = new DataOutputStream(fo);
-				FileOutputStream fr = new FileOutputStream(fp); DataOutputStream escribir1 = new DataOutputStream(fo)) {
+				FileOutputStream fr = new FileOutputStream(fp); DataOutputStream escribir1 = new DataOutputStream(fr)) {
 
-			String vArmas[] = cargarDatosFicherosTexto("armas.txt");
-			String vPisos[] = cargarDatosFicherosTexto("pisos.txt");
+			String vArmas[] = cargarDatosFicherosTexto("Armas.txt");
+			String vPisos[] = cargarDatosFicherosTexto("Pisos.txt");
 
 			for (String s : vArmas) {
 				if (s != null) {
 					escribir.writeUTF(s);
 				}
 			}
-			f.delete();
+			
 			
 			for (String sa : vPisos) {
 				if (sa != null) {
 					escribir1.writeUTF(sa);
 				}
 			}
-			fp.delete();
+			
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		
+		File armas = new File("Armas.txt");
+		armas.delete();
+		File pisos = new File("Pisos.txt");
+		pisos.delete();
 
 	}
 
-	public static String[] DesencriptarPisoArma(String rutaFichero) {
+	public static void DesencriptarPisoArma() {
 
-		String[] vector = new String[10];
-		int cont = 0;
+		String[] vPisos = new String[10];
+		String[] vArmas = new String[10];
+		int cont = 0, cont1 = 0;
 
-		File f = new File(rutaFichero);
+		File f = new File("Armas.txt");
 
 		if (!f.exists()) {
 			try {
@@ -234,27 +241,51 @@ public class IOdatos {
 			}
 
 		}
+		
+		File fp = new File("Pisos.txt");
 
-		try (FileInputStream fi = new FileInputStream(f); DataInputStream leer = new DataInputStream(fi)) {
+		if (!fp.exists()) {
+			try {
+				fp.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
-			while (true) {
-				vector[cont] = leer.readUTF();
+		}
+
+		try (FileReader fr = new FileReader(f); Scanner leer = new Scanner(fr);
+				FileReader fz = new FileReader(fp); Scanner leer1 = new Scanner(fz);) {
+
+			while (leer.hasNext()) {
+				String linea = leer.nextLine();
+				vArmas[cont] = linea;
 				cont++;
 			}
 			
-
+			while (leer.hasNext()) {
+				String linea1 = leer.nextLine();
+				vPisos[cont1] = linea1;
+				cont1++;
+			}
+		
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		
-		try (FileOutputStream fo = new FileOutputStream(f);
-				DataOutputStream escribir = new DataOutputStream(fo)){
+		try (FileOutputStream fo = new FileOutputStream(f); DataOutputStream escribir = new DataOutputStream(fo);
+				FileOutputStream fx = new FileOutputStream(fp); DataOutputStream escribir1 = new DataOutputStream(fx);){
 			
-			for (String s : vector) {
+			for (String s : vArmas) {
 				if (s != null) {
 					escribir.writeUTF(s);
+				}
+			}
+			
+			for (String sa : vPisos) {
+				if (sa != null) {
+					escribir.writeUTF(sa);
 				}
 			}
 			
@@ -264,7 +295,11 @@ public class IOdatos {
 			e1.printStackTrace();
 		}
 		
-		return vector;
+		File fd = new File("Armas.dat");
+		fd.delete();
+		File fw = new File("Pisos.dat");
+		fw.delete();
+		
 	}
 
 	public static void salario(Agente[] vAgentes) {
