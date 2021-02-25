@@ -30,7 +30,7 @@ public final class Espionaje extends Agente implements Serializable {
 			}
 		}
 		
-		return "Agente Espionaje " + piso + "\n" + nombre + "\n" 
+		return  "Agente Espionaje " + piso + "\n" + nombre + "\n" 
 				+ "Edad-" + edad + "\n" 
 				+ direccion + "\n"
 				+ "Salario-" + salario + "\n"
