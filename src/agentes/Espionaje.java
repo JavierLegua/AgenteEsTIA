@@ -1,6 +1,7 @@
 package agentes;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public final class Espionaje extends Agente implements Serializable {
 
@@ -27,8 +28,11 @@ public final class Espionaje extends Agente implements Serializable {
 				x += vPisos;
 			}
 		}
-		return "Espionaje \nNumero de pisos ->" + piso + "\n"
-				+ "************";
+		
+		return "Espionaje " + piso +  nombre + " edad=" + edad + direccion + " salario=" + salario;
 	}
+
+	
+	
 
 }
