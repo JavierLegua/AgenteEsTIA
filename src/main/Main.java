@@ -9,52 +9,49 @@ import iodatos.IOdatos;
 public class Main {
 
 	public static void main(String[] args) {
-		
+
+//Creamos el vector de agentes y guardamos unos cuantos agentes.
 		Agente[] vAgentes = new Agente[10];
-		/*vAgentes[0] = new Jefazo("pepe", 58, "calle", 5000, 15);
+		vAgentes[0] = new Jefazo("pepe", 58, "calle", 5000, 15);
 		vAgentes[1] = new Espionaje("juan", 36, "calle1", 15000);
 		vAgentes[2] = new Agente007("pascual", 57, "calle2", 2500, 150);
-		
-		 for (Agente a : vAgentes) {
-			if (a != null) {
-				System.out.println(a);
-			}
-		}
-		
-		*/
-		
-		//A la hora de crear ficheros, nombralos con la primera letra en mayusculas.
-		
-	
-	
+
+//Iniciamos la aplicación.		
 		int opc = IOdatos.pintarMenu();
 		do {
 		
 			switch (opc) {
 			case 1:
-				IOdatos.armaPiso("Armas.txt");
+				IOdatos.verAgentes(vAgentes);
 				break;
 			case 2:
-			
+				IOdatos.salario(vAgentes);
 				break;
 			case 3:
-
+				IOdatos.añadirPiso("Pisos.txt");
 				break;
 			case 4:
-
+				IOdatos.añadirArma("Armas.txt");
 				break;
 			case 5:
-
+				IOdatos.añadirAgente(vAgentes);
 				break;
 			case 6:
-
+				IOdatos.EncriptarArmasPisos();
+				IOdatos.EncriptarAgentes("Agentes.dat", vAgentes);
 				break;
 			case 7:
-				opc = 8;
+				IOdatos.DesencriptarAgentes("Agentes.txt");
+				IOdatos.DesencriptarPisoArma();
+				break;
+			case 8:
+				opc = -1;
 				break;
 
 			}
-		} while (opc != 8);
+		} while (opc<1 || opc>8);
+		
+		System.out.println("--No queda constancia de nada--");
 
 	}
 
