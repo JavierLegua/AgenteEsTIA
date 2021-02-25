@@ -63,7 +63,7 @@ public class IOdatos {
 			}
 		}
 		try (FileWriter esc = new FileWriter(f, true); PrintWriter escribir = new PrintWriter(esc);) {
-			if (armaPiso.equalsIgnoreCase("armas.txt")||armaPiso.equalsIgnoreCase("armas.dat")) {
+			if (armaPiso.equalsIgnoreCase("armas.txt")) {
 				System.out.println("Que arma quieres añadir");
 				String arma = leer.next();
 				escribir.println(arma);
