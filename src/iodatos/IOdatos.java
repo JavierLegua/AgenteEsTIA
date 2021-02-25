@@ -51,7 +51,7 @@ public class IOdatos {
 	public static void anadirPisoArma() {
 		Scanner leer = new Scanner(System.in);
 		
-		System.out.println("Escribe el nombre del fichero a usar. (.dat encriptar y .txt para añadir");
+		System.out.println("Escribe el nombre del fichero a usar. (.txt");
 		String armaPiso = leer.next();
 		File f = new File(armaPiso);
 		if (!f.exists()) {
