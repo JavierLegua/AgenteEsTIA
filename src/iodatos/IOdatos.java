@@ -61,7 +61,7 @@ public class IOdatos {
 		}
 		try (FileWriter esc = new FileWriter(f, true); PrintWriter escribir = new PrintWriter(esc);) {
 			Scanner leer = new Scanner(System.in);
-			if (rutaFichero.equalsIgnoreCase("arma.txt")) {
+			if (rutaFichero.equalsIgnoreCase("armas.txt")) {
 				System.out.println("Que arma quieres añadir");
 				String arma = leer.next();
 				escribir.println(arma);
@@ -167,9 +167,9 @@ public class IOdatos {
 		return vector;
 	}
 
-	public static void EncriptarArmasPisos(String rutaFichero) {
+	public static void EncriptarArmasPisos() {
 
-		File f = new File(rutaFichero);
+		File f = new File("armas.txt");
 
 		if (!f.exists()) {
 			try {
@@ -179,17 +179,37 @@ public class IOdatos {
 			}
 
 		}
+		
+		File fp = new File("pisos.txt");
 
-		try (FileOutputStream fo = new FileOutputStream(f); DataOutputStream escribir = new DataOutputStream(fo)) {
+		if (!fp.exists()) {
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
-			String vDatos[] = cargarDatosFicherosTexto(rutaFichero);
+		}
 
-			for (String s : vDatos) {
+		try (FileOutputStream fo = new FileOutputStream(f); DataOutputStream escribir = new DataOutputStream(fo);
+				FileOutputStream fr = new FileOutputStream(fp); DataOutputStream escribir1 = new DataOutputStream(fo)) {
+
+			String vArmas[] = cargarDatosFicherosTexto("armas.txt");
+			String vPisos[] = cargarDatosFicherosTexto("pisos.txt");
+
+			for (String s : vArmas) {
 				if (s != null) {
 					escribir.writeUTF(s);
 				}
 			}
 			f.delete();
+			
+			for (String sa : vPisos) {
+				if (sa != null) {
+					escribir1.writeUTF(sa);
+				}
+			}
+			fp.delete();
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -221,17 +241,34 @@ public class IOdatos {
 				vector[cont] = leer.readUTF();
 				cont++;
 			}
+			
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
+		
+		try (FileOutputStream fo = new FileOutputStream(f);
+				DataOutputStream escribir = new DataOutputStream(fo)){
+			
+			for (String s : vector) {
+				if (s != null) {
+					escribir.writeUTF(s);
+				}
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		return vector;
 	}
 
 	public static void salario(Agente[] vAgentes) {
+		
 		Scanner leer = new Scanner(System.in);
 		int filtrado = 0;
 
