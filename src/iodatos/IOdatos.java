@@ -24,9 +24,12 @@ import agentes.Jefazo;
 public class IOdatos {
 
 	public static int pintarMenu() {
-		Scanner leer = new Scanner(System.in);
+		
 		int num = 0;
+		
 		do {
+			Scanner leer = new Scanner(System.in);
+			
 			System.out.println("Menu Del Proyecto");
 			System.out.println("Presiona 1 para ver la información de todos los agentes");
 			System.out.println("Presiona 2 para ver la información de todos los agentes que ganen mas de una cantidad");
@@ -51,36 +54,6 @@ public class IOdatos {
 	}
 
 	// me pasan la ruta del fichero piso o armas
-
-	/*
-	 * public static void armaPiso (String rutaFichero) { Scanner leer=new
-	 * Scanner(System.in);
-	 * 
-	 * File f = new File(rutaFichero);
-	 * 
-	 * if (!f.exists()) { try { f.createNewFile(); } catch (IOException e) {
-	 * e.printStackTrace(); } }
-	 * 
-	 * 
-	 * try (FileWriter fw = new FileWriter(f,true);PrintWriter escribir = new
-	 * PrintWriter(fw) ){
-	 * 
-	 * String eleccion;
-	 * 
-	 * if (rutaFichero.equalsIgnoreCase("pisos.txt")) {
-	 * System.out.println("Dime el piso para guardar"); eleccion = leer.nextLine();
-	 * }else { System.out.println("Dime el arma para guardar"); eleccion =
-	 * leer.nextLine(); }
-	 * 
-	 * escribir.println(eleccion);
-	 * 
-	 * 
-	 * } catch (IOException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); }
-	 * 
-	 * }
-	 */
-
 	public static void añadirArma(String rutaFichero) {
 
 		File f = new File(rutaFichero);
@@ -165,6 +138,7 @@ public class IOdatos {
 		return vDatos;
 	}
 	
+	//recorremos el vector de agentes y si la posicion es distinta de nulo lo mostramos por pantalla
 	public static void verAgentes(Agente[] vAgentes) {
 		
 		for (Agente a : vAgentes) {
@@ -175,6 +149,7 @@ public class IOdatos {
 		
 	}
 
+	//encriptamos el vector de agentes en el fichero agentes.dat
 	public static void EncriptarAgentes(String rutaFichero, Agente vAgentes[]) {
 
 		File f = new File(rutaFichero);
@@ -203,6 +178,7 @@ public class IOdatos {
 
 	}
 
+	//desencriptamos el fichero agentes.dat y guardamos lo desencriptado en agentes.txt
 	public static Agente[] DesencriptarAgentes(String rutaFichero) {
 
 		Agente[] vector = new Agente[10];
@@ -232,10 +208,15 @@ public class IOdatos {
 		} catch (ClassNotFoundException e) {
 			System.out.println("Has terminado de leer el fichero.");
 		}
+		
+		//Una vez desencriptado borramos el fichero encriptado
+		File borrarAgentes = new File("Agentes.dat");
+		borrarAgentes.delete();
 
 		return vector;
 	}
 
+	//encriptamos los ficheros armas y pisos
 	public static void EncriptarArmasPisos() {
 
 		File f = new File("Armas.dat");
@@ -285,14 +266,16 @@ public class IOdatos {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
-		File armas = new File("Armas.txt");
-		armas.delete();
-		File pisos = new File("Pisos.txt");
-		pisos.delete();
+		
+		//A la hora de encriptar borramos los ficheros sin encriptar
+		File borrarArmas = new File("Armas.txt");
+		borrarArmas.delete();
+		File borrarPisos = new File("Pisos.txt");
+		borrarPisos.delete();
 
 	}
 
+	//desencriptamos los ficheros armas y pisos
 	public static void DesencriptarPisoArma() {
 
 		String[] vPisos = new String[10];
@@ -323,8 +306,8 @@ public class IOdatos {
 
 		try (FileReader fr = new FileReader(f);
 				Scanner leer = new Scanner(fr);
-				FileReader fz = new FileReader(fp);
-				Scanner leer1 = new Scanner(fz);) {
+				FileReader fr1 = new FileReader(fp);
+				Scanner leer1 = new Scanner(fr1);) {
 
 			while (leer.hasNext()) {
 				String linea = leer.nextLine();
@@ -366,14 +349,16 @@ public class IOdatos {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
-		File fd = new File("Armas.dat");
-		fd.delete();
-		File fw = new File("Pisos.dat");
-		fw.delete();
+		
+		//Una vez desencriptado borramos el fichero encriptado
+		File borrarArmas = new File("Armas.dat");
+		borrarArmas.delete();
+		File borrarPisos = new File("Pisos.dat");
+		borrarPisos.delete();
 
 	}
 
+	//filtramos los agentes por el salario introducido
 	public static void salario(Agente[] vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
@@ -387,6 +372,7 @@ public class IOdatos {
 		for (int i = 0; i < vAgentes.length; i++) {
 			if ((vAgentes[i] != null) && (filtrado < vAgentes[i].getSalario())) {
 				System.out.println(vAgentes[i].getNombre() + " " + vAgentes[i].getSalario());
+				System.out.println();
 
 			}
 		}
