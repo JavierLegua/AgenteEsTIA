@@ -26,10 +26,15 @@ public final class Espionaje extends Agente implements Serializable {
 		for (String x : vPisos) {
 			if (x != null) {
 				x += vPisos;
+				piso += x;
 			}
 		}
 		
-		return "Espionaje " + piso +  nombre + " edad=" + edad + direccion + " salario=" + salario;
+		return "Agente Espionaje " + piso + "\n" + nombre + "\n" 
+				+ "Edad-" + edad + "\n" 
+				+ direccion + "\n"
+				+ "Salario-" + salario + "\n"
+				+"*************";
 	}
 
 	

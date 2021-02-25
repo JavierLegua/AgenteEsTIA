@@ -17,9 +17,12 @@ public class Main {
 		vAgentes[2] = new Agente007("pascual", 57, "calle2", 2500, 150);
 
 //Iniciamos la aplicación.		
-		int opc = IOdatos.pintarMenu();
-		do {
+		int opc = 0;
+		boolean salir = false;
 		
+		do {
+			opc = IOdatos.pintarMenu();
+			
 			switch (opc) {
 			case 1:
 				IOdatos.verAgentes(vAgentes);
@@ -45,11 +48,11 @@ public class Main {
 				IOdatos.DesencriptarPisoArma();
 				break;
 			case 8:
-				opc = -1;
+				salir = true;
 				break;
 
 			}
-		} while (opc<1 || opc>8);
+		} while (salir != true);
 		
 		System.out.println("--No queda constancia de nada--");
 
