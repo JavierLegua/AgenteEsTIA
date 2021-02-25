@@ -39,7 +39,8 @@ public final class Agente007 extends Agente implements Serializable{
 				armas += x + "\n";
 			}
 		}
-		return "Agente007 \nNúmero de bajas-" + numBajas + " \nArmas en posesión- \n" + armas;
+		return  "Agente007 \nNúmero de bajas-" + numBajas + " \nArmas en posesión- \n" + armas + "\n"
+				+"*************";
 	}
 
 }

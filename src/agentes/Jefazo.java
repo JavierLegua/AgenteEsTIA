@@ -23,6 +23,7 @@ public final class Jefazo extends Agente implements Serializable{
 	public String toString() {
 		
 		return "****************\n"
+				+"Jefazo" + "\n"
 				+"-Nombre: " + nombre + "\n"
 				+"-Edad: " + edad + "\n"
 				+"-Dirección: " + direccion + "\n"
