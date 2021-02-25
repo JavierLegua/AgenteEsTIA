@@ -23,7 +23,7 @@ public class Main {
 		
 		*/
 		
-		iodatos.IOdatos.EncriptarArmasPisos("pisos.dat");
+	
 
 
 		int opc = IOdatos.pintarMenu();
@@ -31,7 +31,7 @@ public class Main {
 
 			switch (opc) {
 			case 1:
-				IOdatos.salario(vAgentes);
+				iodatos.IOdatos.anadirPisoArma();
 				break;
 			case 2:
 

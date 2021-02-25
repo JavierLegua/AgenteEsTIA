@@ -48,9 +48,12 @@ public class IOdatos {
 	}
 
 	// me pasan la ruta del fichero piso o armas
-	public static void anadirPisoArma(String rutaFichero) {
-
-		File f = new File(rutaFichero);
+	public static void anadirPisoArma() {
+		Scanner leer = new Scanner(System.in);
+		
+		System.out.println("Escribe el nombre del fichero a usar. (.dat encriptar y .txt para añadir");
+		String armaPiso = leer.next();
+		File f = new File(armaPiso);
 		if (!f.exists()) {
 			try {
 				f.createNewFile();
@@ -60,8 +63,7 @@ public class IOdatos {
 			}
 		}
 		try (FileWriter esc = new FileWriter(f, true); PrintWriter escribir = new PrintWriter(esc);) {
-			Scanner leer = new Scanner(System.in);
-			if (rutaFichero.equalsIgnoreCase("arma.txt")) {
+			if (armaPiso.equalsIgnoreCase("armas.txt")||armaPiso.equalsIgnoreCase("armas.dat")) {
 				System.out.println("Que arma quieres añadir");
 				String arma = leer.next();
 				escribir.println(arma);
