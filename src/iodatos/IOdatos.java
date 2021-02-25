@@ -48,7 +48,9 @@ public class IOdatos {
 	}
 
 	// me pasan la ruta del fichero piso o armas
-	public static void anadirPisoArma() {
+	public static String[] anadirPisoArma() {
+
+		String[] vDatos = new String[10];
 		Scanner leer = new Scanner(System.in);
 		
 		System.out.println("Escribe el nombre del fichero a usar. (.txt");
@@ -58,7 +60,6 @@ public class IOdatos {
 			try {
 				f.createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -75,10 +76,11 @@ public class IOdatos {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		return vDatos;
 	}
 
 	public static String[] cargarDatosFicherosTexto(String rutaFichero) {
-		
+
 		String[] vDatos = new String[10];
 		int cont = 0;
 
@@ -182,7 +184,7 @@ public class IOdatos {
 			}
 
 		}
-		
+
 		File fp = new File("Pisos.dat");
 
 		if (!fp.exists()) {
@@ -194,8 +196,10 @@ public class IOdatos {
 
 		}
 
-		try (FileOutputStream fo = new FileOutputStream(f); DataOutputStream escribir = new DataOutputStream(fo);
-				FileOutputStream fr = new FileOutputStream(fp); DataOutputStream escribir1 = new DataOutputStream(fr)) {
+		try (FileOutputStream fo = new FileOutputStream(f);
+				DataOutputStream escribir = new DataOutputStream(fo);
+				FileOutputStream fr = new FileOutputStream(fp);
+				DataOutputStream escribir1 = new DataOutputStream(fr)) {
 
 			String vArmas[] = cargarDatosFicherosTexto("Armas.txt");
 			String vPisos[] = cargarDatosFicherosTexto("Pisos.txt");
@@ -205,21 +209,19 @@ public class IOdatos {
 					escribir.writeUTF(s);
 				}
 			}
-			
-			
+
 			for (String sa : vPisos) {
 				if (sa != null) {
 					escribir1.writeUTF(sa);
 				}
 			}
-			
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		File armas = new File("Armas.txt");
 		armas.delete();
 		File pisos = new File("Pisos.txt");
@@ -243,7 +245,7 @@ public class IOdatos {
 			}
 
 		}
-		
+
 		File fp = new File("Pisos.txt");
 
 		if (!fp.exists()) {
@@ -255,57 +257,61 @@ public class IOdatos {
 
 		}
 
-		try (FileReader fr = new FileReader(f); Scanner leer = new Scanner(fr);
-				FileReader fz = new FileReader(fp); Scanner leer1 = new Scanner(fz);) {
+		try (FileReader fr = new FileReader(f);
+				Scanner leer = new Scanner(fr);
+				FileReader fz = new FileReader(fp);
+				Scanner leer1 = new Scanner(fz);) {
 
 			while (leer.hasNext()) {
 				String linea = leer.nextLine();
 				vArmas[cont] = linea;
 				cont++;
 			}
-			
+
 			while (leer.hasNext()) {
 				String linea1 = leer.nextLine();
 				vPisos[cont1] = linea1;
 				cont1++;
 			}
-		
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
-		try (FileOutputStream fo = new FileOutputStream(f); DataOutputStream escribir = new DataOutputStream(fo);
-				FileOutputStream fx = new FileOutputStream(fp); DataOutputStream escribir1 = new DataOutputStream(fx);){
-			
+
+		try (FileOutputStream fo = new FileOutputStream(f);
+				DataOutputStream escribir = new DataOutputStream(fo);
+				FileOutputStream fx = new FileOutputStream(fp);
+				DataOutputStream escribir1 = new DataOutputStream(fx);) {
+
 			for (String s : vArmas) {
 				if (s != null) {
 					escribir.writeUTF(s);
 				}
 			}
-			
+
 			for (String sa : vPisos) {
 				if (sa != null) {
 					escribir.writeUTF(sa);
 				}
 			}
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		File fd = new File("Armas.dat");
 		fd.delete();
 		File fw = new File("Pisos.dat");
 		fw.delete();
-		
+
 	}
 
 	public static void salario(Agente[] vAgentes) {
-		
+
 		Scanner leer = new Scanner(System.in);
 		int filtrado = 0;
 
