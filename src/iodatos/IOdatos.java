@@ -48,18 +48,11 @@ public class IOdatos {
 	}
 
 	// me pasan la ruta del fichero piso o armas
-<<<<<<< Updated upstream
-	public static String[] anadirPisoArma() {
-
-		String[] vDatos = new String[10];
-		Scanner leer = new Scanner(System.in);
-=======
 
 	public static void armaPiso (String rutaFichero) { 		
 		Scanner leer=new Scanner(System.in);
 		
 		File f = new File(rutaFichero);
->>>>>>> Stashed changes
 		
 		if (!f.exists()) {
 			try {
@@ -89,12 +82,9 @@ public class IOdatos {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		}
-<<<<<<< Updated upstream
-		return vDatos;
+
 	}
-=======
->>>>>>> Stashed changes
+
 
 	public static String[] cargarDatosFicherosTexto(String rutaFichero) {
 

@@ -32,7 +32,7 @@ public class Main {
 		
 			switch (opc) {
 			case 1:
-				IOdatos.armaPiso("armas.txt");
+				IOdatos.armaPiso("Armas.txt");
 				break;
 			case 2:
 			
@@ -50,7 +50,7 @@ public class Main {
 
 				break;
 			case 7:
-
+				opc = 8;
 				break;
 
 			}
