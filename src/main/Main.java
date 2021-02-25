@@ -23,6 +23,7 @@ public class Main {
 		
 		*/
 		
+		//A la hora de crear ficheros, nombralos con la primera letra en mayusculas.
 		iodatos.IOdatos.cargarDatosFicherosTexto("Armas.txt");
 
 
