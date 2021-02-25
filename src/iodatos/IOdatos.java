@@ -48,14 +48,19 @@ public class IOdatos {
 	}
 
 	// me pasan la ruta del fichero piso o armas
+<<<<<<< Updated upstream
 	public static String[] anadirPisoArma() {
 
 		String[] vDatos = new String[10];
 		Scanner leer = new Scanner(System.in);
+=======
+
+	public static void armaPiso (String rutaFichero) { 		
+		Scanner leer=new Scanner(System.in);
 		
-		System.out.println("Escribe el nombre del fichero a usar. (.txt");
-		String armaPiso = leer.next();
-		File f = new File(armaPiso);
+		File f = new File(rutaFichero);
+>>>>>>> Stashed changes
+		
 		if (!f.exists()) {
 			try {
 				f.createNewFile();
@@ -63,21 +68,33 @@ public class IOdatos {
 				e.printStackTrace();
 			}
 		}
-		try (FileWriter esc = new FileWriter(f, true); PrintWriter escribir = new PrintWriter(esc);) {
-			if (armaPiso.equalsIgnoreCase("armas.txt")) {
-				System.out.println("Que arma quieres añadir");
-				String arma = leer.next();
-				escribir.println(arma);
-			} else {
-				System.out.println("Que piso quieres añadir?");
-				String piso = leer.next();
-				escribir.println(piso);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
+		
+		 
+		try (FileWriter fw = new FileWriter(f,true);PrintWriter escribir = new PrintWriter(fw) ){
+		
+				String eleccion;
+				
+				if (rutaFichero.equalsIgnoreCase("pisos.txt")) {
+					System.out.println("Dime el piso para guardar");
+					eleccion = leer.nextLine();
+				}else {
+					System.out.println("Dime el arma para guardar");
+					eleccion = leer.nextLine();
+				}
+				
+				escribir.println(eleccion);
+				
+				
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
+<<<<<<< Updated upstream
 		return vDatos;
 	}
+=======
+>>>>>>> Stashed changes
 
 	public static String[] cargarDatosFicherosTexto(String rutaFichero) {
 

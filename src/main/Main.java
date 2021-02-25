@@ -24,18 +24,18 @@ public class Main {
 		*/
 		
 		//A la hora de crear ficheros, nombralos con la primera letra en mayusculas.
-		iodatos.IOdatos.cargarDatosFicherosTexto("Armas.txt");
-
-
+		
+	
+	
 		int opc = IOdatos.pintarMenu();
 		do {
-
+		
 			switch (opc) {
 			case 1:
-				iodatos.IOdatos.anadirPisoArma();
+				IOdatos.armaPiso("armas.txt");
 				break;
 			case 2:
-
+			
 				break;
 			case 3:
 
