@@ -22,7 +22,7 @@ public class Main {
 		int opc = 0;
 		boolean salir = false;
 		
-		System.out.println("Bienvenidos al menu de gestión de empleados.");
+		System.out.println("Bienvenidos al menu de gestion de empleados.");
 		System.out.println();
 		
 		do {
@@ -36,13 +36,13 @@ public class Main {
 				IOdatos.salario(vAgentes);
 				break;
 			case 3:
-				IOdatos.añadirPiso("Pisos.txt");
+				IOdatos.anadirPiso("Pisos.txt");
 				break;
 			case 4:
-				IOdatos.añadirArma("Armas.txt");
+				IOdatos.anadirArma("Armas.txt");
 				break;
 			case 5:
-				IOdatos.añadirAgente(vAgentes);
+				IOdatos.anadirAgente(vAgentes);
 				break;
 			case 6:
 				IOdatos.EncriptarArmasPisos();

@@ -56,7 +56,7 @@ public class IOdatos {
 	}
 
 	// me pasan la ruta del fichero piso o armas
-	public static void añadirArma(String rutaFichero) {
+	public static void anadirArma(String rutaFichero) {
 
 		File f = new File(rutaFichero);
 		
@@ -72,7 +72,7 @@ public class IOdatos {
 			Scanner leer = new Scanner(System.in);
 			
 			if (rutaFichero.equalsIgnoreCase("Armas.txt")) {
-				System.out.println("Que arma quieres añadir");
+				System.out.println("Que arma quieres anadir");
 				String arma = leer.next();
 				escribir.println(arma);
 			}
@@ -82,7 +82,7 @@ public class IOdatos {
 
 	}
 
-	public static void añadirPiso(String rutaFichero) {
+	public static void anadirPiso(String rutaFichero) {
 
 		File f = new File(rutaFichero);
 		
@@ -98,7 +98,7 @@ public class IOdatos {
 			Scanner leer = new Scanner(System.in);
 			
 			if (rutaFichero.equalsIgnoreCase("Pisos.txt")) {
-				System.out.println("Dime la dirección del piso.");
+				System.out.println("Dime la direccion del piso.");
 				String piso = leer.next();
 				escribir.println(piso);
 			}
@@ -386,7 +386,7 @@ public class IOdatos {
 
 	}
 
-	public static void añadirAgente(Agente[] vAgentes) {
+	public static void anadirAgente(Agente[] vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
 		
