@@ -11,13 +11,19 @@ public final class Jefazo extends Agente implements Serializable{
 		this.anosMandato = anosMandato;
 	}
 
-	public int getAñosMandato() {
+
+
+	public int getAnosMandato() {
 		return anosMandato;
 	}
 
-	public void setAñosMandato(int añosMandato) {
-		anosMandato = añosMandato;
+
+
+	public void setAnosMandato(int anosMandato) {
+		this.anosMandato = anosMandato;
 	}
+
+
 
 	@Override
 	public String toString() {
