@@ -4,19 +4,19 @@ import java.io.Serializable;
 
 public final class Jefazo extends Agente implements Serializable{
 
-	protected int AñosMandato;
+	protected int anosMandato;
 
-	public Jefazo(String nombre, int edad, String direccion, double salario, int añosMandato) {
+	public Jefazo(String nombre, int edad, String direccion, double salario, int anosMandato) {
 		super(nombre, edad, direccion, salario);
-		AñosMandato = añosMandato;
+		this.anosMandato = anosMandato;
 	}
 
 	public int getAñosMandato() {
-		return AñosMandato;
+		return anosMandato;
 	}
 
 	public void setAñosMandato(int añosMandato) {
-		AñosMandato = añosMandato;
+		anosMandato = añosMandato;
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public final class Jefazo extends Agente implements Serializable{
 				+"-Edad: " + edad + "\n"
 				+"-Dirección: " + direccion + "\n"
 				+"-Salario: " + salario + "\n"
-				+"-Años de mandato: " + AñosMandato + "\n"
+				+"-Años de mandato: " + anosMandato + "\n"
 				+"****************";
 	}
 	
