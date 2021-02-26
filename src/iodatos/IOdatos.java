@@ -24,12 +24,12 @@ import agentes.Jefazo;
 public class IOdatos {
 
 	public static int pintarMenu() {
-		
+
 		int num = 0;
-		
+
 		do {
 			Scanner leer = new Scanner(System.in);
-			
+
 			System.out.println("--Menu de la Agencia--");
 			System.out.println();
 			System.out.println("Presiona 1 para ver la información de todos los agentes");
@@ -59,7 +59,7 @@ public class IOdatos {
 	public static void anadirArma(String rutaFichero) {
 
 		File f = new File(rutaFichero);
-		
+
 		if (!f.exists()) {
 			try {
 				f.createNewFile();
@@ -67,10 +67,10 @@ public class IOdatos {
 				e.printStackTrace();
 			}
 		}
-		
+
 		try (FileWriter esc = new FileWriter(f, true); PrintWriter escribir = new PrintWriter(esc);) {
 			Scanner leer = new Scanner(System.in);
-			
+
 			if (rutaFichero.equalsIgnoreCase("Armas.txt")) {
 				System.out.println("Que arma quieres anadir");
 				String arma = leer.next();
@@ -85,7 +85,7 @@ public class IOdatos {
 	public static void anadirPiso(String rutaFichero) {
 
 		File f = new File(rutaFichero);
-		
+
 		if (!f.exists()) {
 			try {
 				f.createNewFile();
@@ -93,10 +93,10 @@ public class IOdatos {
 				e.printStackTrace();
 			}
 		}
-		
+
 		try (FileWriter esc = new FileWriter(f, true); PrintWriter escribir = new PrintWriter(esc);) {
 			Scanner leer = new Scanner(System.in);
-			
+
 			if (rutaFichero.equalsIgnoreCase("Pisos.txt")) {
 				System.out.println("Dime la direccion del piso.");
 				String piso = leer.next();
@@ -139,19 +139,20 @@ public class IOdatos {
 
 		return vDatos;
 	}
-	
-	//recorremos el vector de agentes y si la posicion es distinta de nulo lo mostramos por pantalla
+
+	// recorremos el vector de agentes y si la posicion es distinta de nulo lo
+	// mostramos por pantalla
 	public static void verAgentes(Agente[] vAgentes) {
-		
+
 		for (Agente a : vAgentes) {
 			if (a != null) {
 				System.out.println(a);
 			}
 		}
-		
+
 	}
 
-	//encriptamos el vector de agentes en el fichero agentes.dat
+	// encriptamos el vector de agentes en el fichero agentes.dat
 	public static void EncriptarAgentes(String rutaFichero, Agente vAgentes[]) {
 
 		File f = new File(rutaFichero);
@@ -180,47 +181,7 @@ public class IOdatos {
 
 	}
 
-	//desencriptamos el fichero agentes.dat y guardamos lo desencriptado en agentes.txt
-	public static Agente[] DesencriptarAgentes(String rutaFichero) {
-
-		Agente[] vector = new Agente[10];
-		int cont = 0;
-
-		File f = new File(rutaFichero);
-
-		if (!f.exists()) {
-			try {
-				f.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		File Agentes = new File("Agentes.dat");
-
-		try (FileInputStream fi = new FileInputStream(Agentes); ObjectInputStream leer = new ObjectInputStream(fi)) {
-
-			while (true) {
-				vector[cont] = (Agente) leer.readObject();
-				cont++;
-			}
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e1) {
-			System.out.println("Has terminado de leer el fichero.");
-		} catch (ClassNotFoundException e) {
-			System.out.println("Has terminado de leer el fichero.");
-		}
-		
-		//Una vez desencriptado borramos el fichero encriptado
-		File borrarAgentes = new File("Agentes.dat");
-		borrarAgentes.delete();
-
-		return vector;
-	}
-
-	//encriptamos los ficheros armas y pisos
+	// encriptamos los ficheros armas y pisos
 	public static void EncriptarArmasPisos() {
 
 		File f = new File("Armas.dat");
@@ -270,8 +231,8 @@ public class IOdatos {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
-		//A la hora de encriptar borramos los ficheros sin encriptar
+
+		// A la hora de encriptar borramos los ficheros sin encriptar
 		File borrarArmas = new File("Armas.txt");
 		borrarArmas.delete();
 		File borrarPisos = new File("Pisos.txt");
@@ -279,7 +240,7 @@ public class IOdatos {
 
 	}
 
-	//desencriptamos los ficheros armas y pisos
+	// desencriptamos los ficheros armas y pisos
 	public static void DesencriptarPisoArma() {
 
 		String[] vPisos = new String[10];
@@ -307,7 +268,7 @@ public class IOdatos {
 			}
 
 		}
-		
+
 		File Armas = new File("Armas.dat");
 		File Pisos = new File("Pisos.dat");
 
@@ -322,8 +283,8 @@ public class IOdatos {
 				cont++;
 			}
 
-			while (leer.hasNext()) {
-				String linea1 = leer.nextLine();
+			while (leer1.hasNext()) {
+				String linea1 = leer1.nextLine();
 				vPisos[cont1] = linea1;
 				cont1++;
 			}
@@ -334,20 +295,20 @@ public class IOdatos {
 			e1.printStackTrace();
 		}
 
-		try (FileOutputStream fo = new FileOutputStream(f);
-				DataOutputStream escribir = new DataOutputStream(fo);
-				FileOutputStream fx = new FileOutputStream(fp);
-				DataOutputStream escribir1 = new DataOutputStream(fx);) {
+		try (FileWriter fw = new FileWriter(f);
+				PrintWriter pw = new PrintWriter(fw);
+				FileWriter fw1 = new FileWriter(fp);
+				PrintWriter pw1 = new PrintWriter(fw1);) {
 
 			for (String s : vArmas) {
 				if (s != null) {
-					escribir.writeUTF(s);
+					pw.println(s);
 				}
 			}
 
 			for (String sa : vPisos) {
 				if (sa != null) {
-					escribir.writeUTF(sa);
+					pw1.println(sa);
 				}
 			}
 
@@ -356,8 +317,8 @@ public class IOdatos {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
-		//Una vez desencriptado borramos el fichero encriptado
+
+		// Una vez desencriptado borramos el fichero encriptado
 		File borrarArmas = new File("Armas.dat");
 		borrarArmas.delete();
 		File borrarPisos = new File("Pisos.dat");
@@ -365,7 +326,7 @@ public class IOdatos {
 
 	}
 
-	//filtramos los agentes por el salario introducido
+	// filtramos los agentes por el salario introducido
 	public static void salario(Agente[] vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
@@ -389,16 +350,16 @@ public class IOdatos {
 	public static void anadirAgente(Agente[] vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
-		
+
 		String nombre = null, direccion = null, tipoAgente = null;
 		int edad = 0, tiempo_mandato = 0, contadorMuertes = 0;
 		double salario = 0;
-		
-		//Pedimos el tipo de agente para hacer una cosa u otra.
+
+		// Pedimos el tipo de agente para hacer una cosa u otra.
 		System.out.println("Dime el tipo de agente que deseas guardar (Jefazo, 007 o Espionaje)");
 		tipoAgente = leer.nextLine();
-		
-		//Continuamos pidiendo los datos comunes de todos los agentes.
+
+		// Continuamos pidiendo los datos comunes de todos los agentes.
 		System.out.println("Dime el nombre del agente.");
 		nombre = leer.nextLine();
 		System.out.println("Dime la direccion del agente.");
@@ -407,32 +368,35 @@ public class IOdatos {
 		edad = leer.nextInt();
 		System.out.println("Dime el salario del agente.");
 		salario = leer.nextDouble();
-		
-		//Ahora dependiendo del tipo de agente que nos han pasado haremos unas cosas distintas.
+
+		// Ahora dependiendo del tipo de agente que nos han pasado haremos unas cosas
+		// distintas.
 		if (tipoAgente.equalsIgnoreCase("jefazo")) {
 			System.out.println("Dime el tiempo de mandato del jefazo.");
 			tiempo_mandato = leer.nextInt();
-			
-			//Comprobamos cual es la primera posicion vacia en el vector y guardamos un nuevo agente en el.
+
+			// Comprobamos cual es la primera posicion vacia en el vector y guardamos un
+			// nuevo agente en el.
 			for (int i = 0; i < vAgentes.length; i++) {
 				if (vAgentes[i] == null) {
 					vAgentes[i] = new Jefazo(nombre, edad, direccion, salario, tiempo_mandato);
 					break;
 				}
 			}
-		}else if (tipoAgente.equalsIgnoreCase("007")) {
+		} else if (tipoAgente.equalsIgnoreCase("007")) {
 			System.out.println("Dime el número de bajas que tiene este Agente007.");
 			contadorMuertes = leer.nextInt();
-			
-			//Comprobamos cual es la primera posicion vacia en el vector y guardamos un nuevo agente en el.
+
+			// Comprobamos cual es la primera posicion vacia en el vector y guardamos un
+			// nuevo agente en el.
 			for (int i = 0; i < vAgentes.length; i++) {
 				if (vAgentes[i] == null) {
 					vAgentes[i] = new Agente007(nombre, edad, direccion, salario, contadorMuertes);
 					break;
 				}
 			}
-		}else {
-			//Como el tipo no es ni jefazo ni 007 solo queda 1 tipo de agente.
+		} else {
+			// Como el tipo no es ni jefazo ni 007 solo queda 1 tipo de agente.
 			for (int i = 0; i < vAgentes.length; i++) {
 				if (vAgentes[i] == null) {
 					vAgentes[i] = new Espionaje(nombre, edad, direccion, salario);
@@ -440,27 +404,27 @@ public class IOdatos {
 				}
 			}
 		}
-	
+
 	}
-	
-	//Metodo que borra todos los datos una vez salgamos de la aplicacion
+
+	// Metodo que borra todos los datos una vez salgamos de la aplicacion
 	public static void borrarTodo() {
-		
+
 		File borrarArmas = new File("Armas.txt");
 		borrarArmas.delete();
-		
+
 		File borrarArmasEncriptadas = new File("Armas.dat");
 		borrarArmasEncriptadas.delete();
-		
+
 		File borrarPisos = new File("Pisos.txt");
 		borrarPisos.delete();
-		
+
 		File borrarPisosEncriptados = new File("Pisos.dat");
 		borrarPisosEncriptados.delete();
-		
+
 		File borrarAgentes = new File("Agentes.txt");
 		borrarAgentes.delete();
-		
+
 		File borrarAgentesEncriptados = new File("Agentes.dat");
 		borrarAgentesEncriptados.delete();
 	}

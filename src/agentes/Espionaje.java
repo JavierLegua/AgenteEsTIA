@@ -25,7 +25,6 @@ public final class Espionaje extends Agente implements Serializable {
 		String piso = "";
 		for (String x : vPisos) {
 			if (x != null) {
-				x += vPisos;
 				piso += x;
 			}
 		}

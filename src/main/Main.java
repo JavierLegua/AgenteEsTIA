@@ -12,22 +12,17 @@ public class Main {
 
 //Creamos el vector de agentes y guardamos unos cuantos agentes.
 		Agente[] vAgentes = new Agente[10];
-		/*
-		* vAgentes[0] = new Jefazo("pepe", 58, "calle", 5000, 15);
-		* vAgentes[1] = new Espionaje("juan", 36, "calle1", 15000);
-		* vAgentes[2] = new Agente007("pascual", 57, "calle2", 2500, 150);
-		*/
-		
+
 //Iniciamos la aplicación.		
 		int opc = 0;
 		boolean salir = false;
-		
+
 		System.out.println("Bienvenidos al menu de gestion de empleados.");
 		System.out.println();
-		
+
 		do {
 			opc = IOdatos.pintarMenu();
-			
+
 			switch (opc) {
 			case 1:
 				IOdatos.verAgentes(vAgentes);
@@ -49,7 +44,6 @@ public class Main {
 				IOdatos.EncriptarAgentes("Agentes.dat", vAgentes);
 				break;
 			case 7:
-				IOdatos.DesencriptarAgentes("Agentes.txt");
 				IOdatos.DesencriptarPisoArma();
 				break;
 			case 8:
@@ -59,7 +53,7 @@ public class Main {
 
 			}
 		} while (salir != true);
-		
+
 		System.out.println("--No queda constancia de nada--");
 
 	}
