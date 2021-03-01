@@ -243,9 +243,6 @@ public class IOdatos {
 	// desencriptamos los ficheros armas y pisos
 	public static void DesencriptarPisoArma() {
 
-		String[] vPisos = new String[10];
-		String[] vArmas = new String[10];
-		int cont = 0, cont1 = 0;
 
 		File f = new File("Armas.txt");
 
@@ -269,60 +266,48 @@ public class IOdatos {
 
 		}
 
-		File Armas = new File("Armas.dat");
-		File Pisos = new File("Pisos.dat");
+		File armas = new File("Armas.dat");
+		File pisos = new File("Pisos.dat");
 
-		try (FileReader fr = new FileReader(Armas);
-				Scanner leer = new Scanner(fr);
-				FileReader fr1 = new FileReader(Pisos);
-				Scanner leer1 = new Scanner(fr1);) {
+		try (FileInputStream fr = new FileInputStream(armas);
+			DataInputStream leer = new DataInputStream(fr);
+				FileWriter ff = new FileWriter(f);
+				PrintWriter escribir = new PrintWriter(ff)) {
 
-			while (leer.hasNext()) {
-				String linea = leer.nextLine();
-				vArmas[cont] = linea;
-				cont++;
-			}
-
-			while (leer1.hasNext()) {
-				String linea1 = leer1.nextLine();
-				vPisos[cont1] = linea1;
-				cont1++;
+			while(true) {
+				String linea = leer.readUTF();
+				escribir.println(linea);
 			}
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			System.out.println();
 		}
+		
+		try (FileInputStream fr1 = new FileInputStream(pisos);
+				DataInputStream leer1 = new DataInputStream(fr1);
+					FileWriter ff1 = new FileWriter(f);
+					PrintWriter escribir1 = new PrintWriter(ff1)) {
 
-		try (FileWriter fw = new FileWriter(f);
-				PrintWriter pw = new PrintWriter(fw);
-				FileWriter fw1 = new FileWriter(fp);
-				PrintWriter pw1 = new PrintWriter(fw1);) {
-
-			for (String s : vArmas) {
-				if (s != null) {
-					pw.println(s);
+				while(true) {
+					String linea1 = leer1.readUTF();
+					escribir1.println(linea1);
 				}
+
+				
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e1) {
+				System.out.println("Fichero leido.");
 			}
 
-			for (String sa : vPisos) {
-				if (sa != null) {
-					pw1.println(sa);
-				}
-			}
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		
 
 		// Una vez desencriptado borramos el fichero encriptado
-		File borrarArmas = new File("Armas.dat");
-		borrarArmas.delete();
-		File borrarPisos = new File("Pisos.dat");
-		borrarPisos.delete();
+		armas.delete();
+		pisos.delete();
 
 	}
 
