@@ -21,7 +21,23 @@ import agentes.Agente007;
 import agentes.Espionaje;
 import agentes.Jefazo;
 
+/**
+ * @author:Oscar Magallon y Javier Legua
+
+ * @version: 1.0
+
+ */
 public class IOdatos {
+	
+	
+	 /**
+	  * 
+	  * @return numero escojido
+	  * Descripcion ->	Metodo que pinta el menu en pantalla con las opciones.
+	 	Comprueba que el numero sea valido.
+	  * 
+	  */
+	 
 
 	public static int pintarMenu() {
 
@@ -55,7 +71,12 @@ public class IOdatos {
 		return num;
 	}
 
-	// me pasan la ruta del fichero piso o armas
+	/**
+	 * 
+	 * @param rutaFichero recibe la ruta del fichero
+	 * 	Descripción-> crea el fichero si no esta lo crea.
+	 	comprueba el nombre de la ruta y apunta el arma escrita en el fichero
+	 */
 	public static void anadirArma(String rutaFichero) {
 
 		File f = new File(rutaFichero);
@@ -81,7 +102,13 @@ public class IOdatos {
 		}
 
 	}
-
+	
+	/**
+	 * 
+	 * @param rutaFichero recibe la ruta del fichero
+	 * Descripcion -> crea el fichero si no esta lo crea.
+	 	comprueba el nombre de la ruta y apunta el arma escrita en el fichero
+	 */
 	public static void anadirPiso(String rutaFichero) {
 
 		File f = new File(rutaFichero);
@@ -107,7 +134,12 @@ public class IOdatos {
 		}
 
 	}
-
+	
+	/**
+	 * 
+	 * @param rutaFichero recibe la ruta del fichero
+	 * @return devuelve un vector con los datos cargados
+	 */
 	public static String[] cargarDatosFicherosTexto(String rutaFichero) {
 
 		String[] vDatos = new String[10];
@@ -140,8 +172,11 @@ public class IOdatos {
 		return vDatos;
 	}
 
-	// recorremos el vector de agentes y si la posicion es distinta de nulo lo
-	// mostramos por pantalla
+	/* 
+	  	Recibimos y recorremos el vector de agentes y si la posicion no esta vacia
+	  	mostramos todo por pantalla
+	*/ 
+	
 	public static void verAgentes(Agente[] vAgentes) {
 
 		for (Agente a : vAgentes) {
@@ -152,7 +187,10 @@ public class IOdatos {
 
 	}
 
-	// encriptamos el vector de agentes en el fichero agentes.dat
+	/*
+	 	Recibe el vector de los agentes 
+	 	recorre ese vector y los datos los pasa a un fichero encriptado
+	 */
 	public static void EncriptarAgentes(String rutaFichero, Agente vAgentes[]) {
 
 		File f = new File(rutaFichero);
@@ -181,7 +219,12 @@ public class IOdatos {
 
 	}
 
-	// encriptamos los ficheros armas y pisos
+	/*
+	 	Creamos los ficheros .dat de armas y pisos
+	 	cojemos la informacion de los fichero .txt 
+	 	y los cargamos en enciptado en el archivo .dat
+	 	
+	 */
 	public static void EncriptarArmasPisos() {
 
 		File f = new File("Armas.dat");
