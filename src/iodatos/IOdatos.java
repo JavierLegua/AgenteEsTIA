@@ -171,11 +171,13 @@ public class IOdatos {
 
 		return vDatos;
 	}
-
-	/* 
-	  	Recibimos y recorremos el vector de agentes y si la posicion no esta vacia
+/**
+ * 
+ * @param vAgentes recibimos el vector de agentes
+ * Descripcion -> recorremos el vector de agentes y si la posicion no esta vacia
 	  	mostramos todo por pantalla
-	*/ 
+ */
+
 	
 	public static void verAgentes(Agente[] vAgentes) {
 
@@ -186,11 +188,14 @@ public class IOdatos {
 		}
 
 	}
-
-	/*
-	 	Recibe el vector de los agentes 
-	 	recorre ese vector y los datos los pasa a un fichero encriptado
+	/**
+	 * 
+	 * @param rutaFichero recibe la ruta del fichero
+	 * @param vAgentes recibe el vector de agentes
+	 *  recorre el vector de agente y encripta los datos en un fichero .dat
 	 */
+
+
 	public static void EncriptarAgentes(String rutaFichero, Agente vAgentes[]) {
 
 		File f = new File(rutaFichero);
@@ -218,7 +223,7 @@ public class IOdatos {
 		}
 
 	}
-
+	
 	/*
 	 	Creamos los ficheros .dat de armas y pisos
 	 	cojemos la informacion de los fichero .txt 
@@ -283,7 +288,12 @@ public class IOdatos {
 
 	}
 
-	// desencriptamos los ficheros armas y pisos
+	/*
+ 	Creamos los ficheros .txt de armas y pisos
+ 	cojemos la informacion de los fichero.dat
+ 	y los cargamos en un fichero txt.
+ 	
+ */
 	public static void DesencriptarPisoArma() {
 
 
@@ -354,7 +364,11 @@ public class IOdatos {
 
 	}
 
-	// filtramos los agentes por el salario introducido
+	/**
+	 * 
+	 * @param vAgentes recibe el parametro 
+	 * descripcion-> Demuestra por pantalla los agentes que ganen mas de un numero
+	 */
 	public static void salario(Agente[] vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
@@ -374,6 +388,13 @@ public class IOdatos {
 		}
 
 	}
+	/**
+	 * 
+	 * @param vAgentes recibe el vector de agenetes
+	 * descripcion -> Pregunta por el tipo de agente añadir,
+	 * pregunta sus caracteristicas depende del agente
+	 * y carga la informacion en la primera posicion libre del vector
+	 */
 
 	public static void anadirAgente(Agente[] vAgentes) {
 
@@ -436,6 +457,7 @@ public class IOdatos {
 	}
 
 	// Metodo que borra todos los datos una vez salgamos de la aplicacion
+	
 	public static void borrarTodo() {
 
 		File borrarArmas = new File("Armas.txt");
