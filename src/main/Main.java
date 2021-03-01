@@ -5,7 +5,13 @@ import agentes.Agente007;
 import agentes.Espionaje;
 import agentes.Jefazo;
 import iodatos.IOdatos;
-
+/**
+ * 
+ * @author Javier Legua y Oscar Magallon
+ * @version v1.0 1/03/2021
+ * Descripción --> Esta clase ejecuta el do-while con el menu y las distintas opciones.
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
