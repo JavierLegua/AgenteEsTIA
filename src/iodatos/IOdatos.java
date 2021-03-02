@@ -21,7 +21,23 @@ import agentes.Agente007;
 import agentes.Espionaje;
 import agentes.Jefazo;
 
+/**
+ * @author:Oscar Magallon y Javier Legua
+
+ * @version: 1.0
+
+ */
 public class IOdatos {
+	
+	
+	 /**
+	  * 
+	  * @return numero escojido
+	  * Descripcion ->	Metodo que pinta el menu en pantalla con las opciones.
+	 	Comprueba que el numero sea valido.
+	  * 
+	  */
+	 
 
 	public static int pintarMenu() {
 
@@ -55,7 +71,12 @@ public class IOdatos {
 		return num;
 	}
 
-	// me pasan la ruta del fichero piso o armas
+	/**
+	 * 
+	 * @param rutaFichero recibe la ruta del fichero
+	 * 	Descripción-> crea el fichero si no esta lo crea.
+	 	comprueba el nombre de la ruta y apunta el arma escrita en el fichero
+	 */
 	public static void anadirArma(String rutaFichero) {
 
 		File f = new File(rutaFichero);
@@ -81,7 +102,13 @@ public class IOdatos {
 		}
 
 	}
-
+	
+	/**
+	 * 
+	 * @param rutaFichero recibe la ruta del fichero
+	 * Descripcion -> crea el fichero si no esta lo crea.
+	 	comprueba el nombre de la ruta y apunta el arma escrita en el fichero
+	 */
 	public static void anadirPiso(String rutaFichero) {
 
 		File f = new File(rutaFichero);
@@ -107,7 +134,12 @@ public class IOdatos {
 		}
 
 	}
-
+	
+	/**
+	 * 
+	 * @param rutaFichero recibe la ruta del fichero
+	 * @return devuelve un vector con los datos cargados
+	 */
 	public static String[] cargarDatosFicherosTexto(String rutaFichero) {
 
 		String[] vDatos = new String[10];
@@ -139,9 +171,14 @@ public class IOdatos {
 
 		return vDatos;
 	}
+/**
+ * 
+ * @param vAgentes recibimos el vector de agentes
+ * Descripcion -> recorremos el vector de agentes y si la posicion no esta vacia
+	  	mostramos todo por pantalla
+ */
 
-	// recorremos el vector de agentes y si la posicion es distinta de nulo lo
-	// mostramos por pantalla
+	
 	public static void verAgentes(Agente[] vAgentes) {
 
 		for (Agente a : vAgentes) {
@@ -151,8 +188,14 @@ public class IOdatos {
 		}
 
 	}
+	/**
+	 * 
+	 * @param rutaFichero recibe la ruta del fichero
+	 * @param vAgentes recibe el vector de agentes
+	 *  recorre el vector de agente y encripta los datos en un fichero .dat 
+	 */
 
-	// encriptamos el vector de agentes en el fichero agentes.dat
+
 	public static void EncriptarAgentes(String rutaFichero, Agente vAgentes[]) {
 
 		File f = new File(rutaFichero);
@@ -180,8 +223,13 @@ public class IOdatos {
 		}
 
 	}
-
-	// encriptamos los ficheros armas y pisos
+	
+	/*
+	 	Creamos los ficheros .dat de armas y pisos
+	 	cojemos la informacion de los fichero .txt 
+	 	y los cargamos en enciptado en el archivo .dat
+	 	
+	 */
 	public static void EncriptarArmasPisos() {
 
 		File f = new File("Armas.dat");
@@ -240,12 +288,14 @@ public class IOdatos {
 
 	}
 
-	// desencriptamos los ficheros armas y pisos
+	/*
+ 	Creamos los ficheros .txt de armas y pisos
+ 	cojemos la informacion de los fichero.dat
+ 	y los cargamos en un fichero txt.
+ 	
+ */
 	public static void DesencriptarPisoArma() {
 
-		String[] vPisos = new String[10];
-		String[] vArmas = new String[10];
-		int cont = 0, cont1 = 0;
 
 		File f = new File("Armas.txt");
 
@@ -269,64 +319,56 @@ public class IOdatos {
 
 		}
 
-		File Armas = new File("Armas.dat");
-		File Pisos = new File("Pisos.dat");
+		File armas = new File("Armas.dat");
+		File pisos = new File("Pisos.dat");
 
-		try (FileReader fr = new FileReader(Armas);
-				Scanner leer = new Scanner(fr);
-				FileReader fr1 = new FileReader(Pisos);
-				Scanner leer1 = new Scanner(fr1);) {
+		try (FileInputStream fr = new FileInputStream(armas);
+			DataInputStream leer = new DataInputStream(fr);
+				FileWriter ff = new FileWriter(f);
+				PrintWriter escribir = new PrintWriter(ff)) {
 
-			while (leer.hasNext()) {
-				String linea = leer.nextLine();
-				vArmas[cont] = linea;
-				cont++;
-			}
-
-			while (leer1.hasNext()) {
-				String linea1 = leer1.nextLine();
-				vPisos[cont1] = linea1;
-				cont1++;
+			while(true) {
+				String linea = leer.readUTF();
+				escribir.println(linea);
 			}
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			System.out.println();
 		}
+		
+		try (FileInputStream fr1 = new FileInputStream(pisos);
+				DataInputStream leer1 = new DataInputStream(fr1);
+					FileWriter ff1 = new FileWriter(f);
+					PrintWriter escribir1 = new PrintWriter(ff1)) {
 
-		try (FileWriter fw = new FileWriter(f);
-				PrintWriter pw = new PrintWriter(fw);
-				FileWriter fw1 = new FileWriter(fp);
-				PrintWriter pw1 = new PrintWriter(fw1);) {
-
-			for (String s : vArmas) {
-				if (s != null) {
-					pw.println(s);
+				while(true) {
+					String linea1 = leer1.readUTF();
+					escribir1.println(linea1);
 				}
+
+				
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e1) {
+				System.out.println("Fichero leido.");
 			}
 
-			for (String sa : vPisos) {
-				if (sa != null) {
-					pw1.println(sa);
-				}
-			}
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		
 
 		// Una vez desencriptado borramos el fichero encriptado
-		File borrarArmas = new File("Armas.dat");
-		borrarArmas.delete();
-		File borrarPisos = new File("Pisos.dat");
-		borrarPisos.delete();
+		armas.delete();
+		pisos.delete();
 
 	}
 
-	// filtramos los agentes por el salario introducido
+	/**
+	 * 
+	 * @param vAgentes recibe el parametro 
+	 * descripcion-> Demuestra por pantalla los agentes que ganen mas de un numero
+	 */
 	public static void salario(Agente[] vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
@@ -346,6 +388,13 @@ public class IOdatos {
 		}
 
 	}
+	/**
+	 * 
+	 * @param vAgentes recibe el vector de agenetes
+	 * descripcion -> Pregunta por el tipo de agente añadir,
+	 * pregunta sus caracteristicas depende del agente
+	 * y carga la informacion en la primera posicion libre del vector
+	 */
 
 	public static void anadirAgente(Agente[] vAgentes) {
 
@@ -408,6 +457,7 @@ public class IOdatos {
 	}
 
 	// Metodo que borra todos los datos una vez salgamos de la aplicacion
+	
 	public static void borrarTodo() {
 
 		File borrarArmas = new File("Armas.txt");
