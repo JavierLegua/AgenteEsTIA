@@ -192,7 +192,7 @@ public class IOdatos {
 	 * 
 	 * @param rutaFichero recibe la ruta del fichero
 	 * @param vAgentes recibe el vector de agentes
-	 *  recorre el vector de agente y encripta los datos en un fichero .dat
+	 *  recorre el vector de agente y encripta los datos en un fichero .dat 
 	 */
 
 
