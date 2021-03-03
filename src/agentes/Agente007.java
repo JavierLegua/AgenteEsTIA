@@ -50,7 +50,7 @@ public final class Agente007 extends Agente implements Serializable{
  * 
  * @param vArmas del agente
  */
-	public void setvArmas(String[] vArmas) {
+	public void setvArmas(ArrayList<String>vArmas) {
 		this.vArmas=vArmas;
 	}
 

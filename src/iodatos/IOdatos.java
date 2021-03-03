@@ -197,7 +197,7 @@ public class IOdatos {
 	 */
 
 
-	public static void EncriptarAgentes(String rutaFichero, Agente vAgentes[]) {
+	public static void EncriptarAgentes(String rutaFichero, ArrayList<Agente> vAgentes) {
 
 		File f = new File(rutaFichero);
 
@@ -212,9 +212,8 @@ public class IOdatos {
 		try (FileOutputStream fi = new FileOutputStream(f); ObjectOutputStream escribir = new ObjectOutputStream(fi)) {
 
 			for (Agente a : vAgentes) {
-				if (a != null) {
 					escribir.writeObject(a);
-				}
+				
 			}
 
 		} catch (FileNotFoundException e) {
@@ -369,7 +368,7 @@ public class IOdatos {
 	 * @param vAgentes recibe el parametro 
 	 * descripcion-> Demuestra por pantalla los agentes que ganen mas de un numero
 	 */
-	public static void salario(Agente[] vAgentes) {
+	public static void salario(ArrayList<Agente> vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
 		int filtrado = 0;
@@ -379,9 +378,9 @@ public class IOdatos {
 		System.out.println("Escribe un numero");
 		filtrado = leer.nextInt();
 
-		for (int i = 0; i < vAgentes.length; i++) {
-			if ((vAgentes[i] != null) && (filtrado < vAgentes[i].getSalario())) {
-				System.out.println(vAgentes[i].getNombre() + " " + vAgentes[i].getSalario());
+		for (int i = 0; i < vAgentes.size(); i++) {
+			if ((filtrado < vAgentes.get(i).getSalario())) {
+				System.out.println(vAgentes.get(i).getNombre() + " " + vAgentes.get(i).getSalario());
 				System.out.println();
 
 			}
@@ -394,9 +393,10 @@ public class IOdatos {
 	 * descripcion -> Pregunta por el tipo de agente añadir,
 	 * pregunta sus caracteristicas depende del agente
 	 * y carga la informacion en la primera posicion libre del vector
+	 * @return 
 	 */
 
-	public static void anadirAgente(Agente[] vAgentes) {
+	public static ArrayList<Agente> anadirAgente(ArrayList<Agente> vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
 
@@ -426,35 +426,28 @@ public class IOdatos {
 
 			// Comprobamos cual es la primera posicion vacia en el vector y guardamos un
 			// nuevo agente en el.
-			for (int i = 0; i < vAgentes.length; i++) {
-				if (vAgentes[i] == null) {
-					vAgentes[i] = new Jefazo(nombre, edad, direccion, salario, tiempo_mandato);
-					break;
-				}
-			}
+			
+				vAgentes.add(new Jefazo(nombre, edad, direccion, salario, tiempo_mandato));
+					
+			
+			
 		} else if (tipoAgente.equalsIgnoreCase("007")) {
 			System.out.println("Dime el número de bajas que tiene este Agente007.");
 			contadorMuertes = leer.nextInt();
 
 			// Comprobamos cual es la primera posicion vacia en el vector y guardamos un
 			// nuevo agente en el.
-			for (int i = 0; i < vAgentes.length; i++) {
-				if (vAgentes[i] == null) {
-					vAgentes[i] = new Agente007(nombre, edad, direccion, salario, contadorMuertes);
-					break;
+					vAgentes.add(new Agente007(nombre, edad, direccion, salario, contadorMuertes));
 				}
-			}
-		} else {
+			
+		 else {
 			// Como el tipo no es ni jefazo ni 007 solo queda 1 tipo de agente.
-			for (int i = 0; i < vAgentes.length; i++) {
-				if (vAgentes[i] == null) {
-					vAgentes[i] = new Espionaje(nombre, edad, direccion, salario);
+			for (int i = 0; i < vAgentes.size(); i++) {
+					vAgentes.add(new Espionaje(nombre, edad, direccion, salario));
 					break;
 				}
 			}
 		}
-
-	}
 
 	// Metodo que borra todos los datos una vez salgamos de la aplicacion
 	

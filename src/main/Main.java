@@ -19,7 +19,7 @@ public class Main {
 	public static void main(String[] args) {
 
 //Creamos el vector de agentes y guardamos unos cuantos agentes.
-		ArrayList<Agente> vAgentes;
+		ArrayList<Agente> vAgentes =null;
 
 //Iniciamos la aplicación.		
 		int opc = 0;
@@ -30,6 +30,7 @@ public class Main {
 
 		do {
 			opc = IOdatos.pintarMenu();
+			
 
 			switch (opc) {
 			case 1:
