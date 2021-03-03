@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import agentes.Agente;
@@ -140,9 +141,9 @@ public class IOdatos {
 	 * @param rutaFichero recibe la ruta del fichero
 	 * @return devuelve un vector con los datos cargados
 	 */
-	public static String[] cargarDatosFicherosTexto(String rutaFichero) {
+	public static ArrayList<String> cargarDatosFicherosTexto(String rutaFichero) {
 
-		String[] vDatos = new String[10];
+		ArrayList<String> vDatos = new ArrayList();
 		int cont = 0;
 
 		File f = new File(rutaFichero);
@@ -159,7 +160,7 @@ public class IOdatos {
 
 			while (leer.hasNext()) {
 				String linea = leer.nextLine();
-				vDatos[cont] = linea;
+				vDatos.add(linea);
 				cont++;
 			}
 
@@ -179,7 +180,7 @@ public class IOdatos {
  */
 
 	
-	public static void verAgentes(Agente[] vAgentes) {
+	public static void verAgentes(ArrayList<Agente> vAgentes) {
 
 		for (Agente a : vAgentes) {
 			if (a != null) {
@@ -259,19 +260,18 @@ public class IOdatos {
 				FileOutputStream fr = new FileOutputStream(fp);
 				DataOutputStream escribir1 = new DataOutputStream(fr)) {
 
-			String vArmas[] = cargarDatosFicherosTexto("Armas.txt");
-			String vPisos[] = cargarDatosFicherosTexto("Pisos.txt");
+			ArrayList<String>vArmas = cargarDatosFicherosTexto("Armas.txt");
+			ArrayList<String>vPisos = cargarDatosFicherosTexto("Pisos.txt");
 
 			for (String s : vArmas) {
-				if (s != null) {
+			
 					escribir.writeUTF(s);
-				}
+				
 			}
 
 			for (String sa : vPisos) {
-				if (sa != null) {
 					escribir1.writeUTF(sa);
-				}
+				
 			}
 
 		} catch (FileNotFoundException e) {

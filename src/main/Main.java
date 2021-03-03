@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import agentes.Agente;
 import agentes.Agente007;
 import agentes.Espionaje;
@@ -17,7 +19,7 @@ public class Main {
 	public static void main(String[] args) {
 
 //Creamos el vector de agentes y guardamos unos cuantos agentes.
-		Agente[] vAgentes = new Agente[10];
+		ArrayList<Agente> vAgentes;
 
 //Iniciamos la aplicación.		
 		int opc = 0;
