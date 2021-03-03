@@ -447,6 +447,7 @@ public class IOdatos {
 					break;
 				}
 			}
+		return vAgentes;
 		}
 
 	// Metodo que borra todos los datos una vez salgamos de la aplicacion
