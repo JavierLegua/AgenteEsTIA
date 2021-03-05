@@ -387,6 +387,37 @@ public class IOdatos {
 		}
 
 	}
+	
+	public static ArrayList<Agente> leerAgente() {
+		ArrayList<Agente> vAgentes = new ArrayList<Agente>();
+		File f = new File ("Agentes.dat");
+		
+		
+		if (!f.exists()) {
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		try (FileInputStream fi = new FileInputStream(f); ObjectInputStream leer = new ObjectInputStream(fi);) {
+
+			while(true) {
+				vAgentes.add((Agente) leer.readObject());
+			}
+				
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Fin de lectura de agentes.dat");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return vAgentes;
+	}
 	/**
 	 * 
 	 * @param vAgentes recibe el vector de agenetes
@@ -474,5 +505,12 @@ public class IOdatos {
 
 		File borrarAgentesEncriptados = new File("Agentes.dat");
 		borrarAgentesEncriptados.delete();
+	}
+
+	public static void EncriptarTodo() {
+		ArrayList<String> vArmas = cargarDatosFicherosTexto("Armas.dat");
+		ArrayList<String> vPisos = cargarDatosFicherosTexto("Pisos.dat");
+		ArrayList<Agente> vAgentes  
+		
 	}
 }
