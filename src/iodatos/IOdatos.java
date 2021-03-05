@@ -417,34 +417,41 @@ public class IOdatos {
 		edad = leer.nextInt();
 		System.out.println("Dime el salario del agente.");
 		salario = leer.nextDouble();
-
+		//1
+		
 		// Ahora dependiendo del tipo de agente que nos han pasado haremos unas cosas
 		// distintas.
-		if (tipoAgente.equalsIgnoreCase("jefazo")) {
+		if (tipoAgente.equalsIgnoreCase("jefazo")) //2
+			{
 			System.out.println("Dime el tiempo de mandato del jefazo.");
 			tiempo_mandato = leer.nextInt();
-
+			
 			// Comprobamos cual es la primera posicion vacia en el vector y guardamos un
 			// nuevo agente en el.
 			
 				vAgentes.add(new Jefazo(nombre, edad, direccion, salario, tiempo_mandato));
-					
+				
+				//3
 			
 			
-		} else if (tipoAgente.equalsIgnoreCase("007")) {
+		} else if (tipoAgente.equalsIgnoreCase("007")) {//4
 			System.out.println("Dime el número de bajas que tiene este Agente007.");
 			contadorMuertes = leer.nextInt();
 
 			// Comprobamos cual es la primera posicion vacia en el vector y guardamos un
 			// nuevo agente en el.
-					vAgentes.add(new Agente007(nombre, edad, direccion, salario, contadorMuertes));
+				
+			vAgentes.add(new Agente007(nombre, edad, direccion, salario, contadorMuertes));	
+			//5
 				}
 			
 		 else {
 			// Como el tipo no es ni jefazo ni 007 solo queda 1 tipo de agente.
 					vAgentes.add(new Espionaje(nombre, edad, direccion, salario));
+					//6
 			}
 		}
+	//7
 
 	// Metodo que borra todos los datos una vez salgamos de la aplicacion
 	
