@@ -339,7 +339,7 @@ public class IOdatos {
 		
 		try (FileInputStream fr1 = new FileInputStream(pisos);
 				DataInputStream leer1 = new DataInputStream(fr1);
-					FileWriter ff1 = new FileWriter(f);
+					FileWriter ff1 = new FileWriter(fp);
 					PrintWriter escribir1 = new PrintWriter(ff1)) {
 
 				while(true) {
