@@ -19,7 +19,7 @@ public class Main {
 	public static void main(String[] args) {
 
 //Creamos el vector de agentes y guardamos unos cuantos agentes.
-		ArrayList<Agente> vAgentes = null;//(String) vAgentes.add(new Espionaje("Javier", 58, "calle", 154564));
+		ArrayList<Agente> vAgentes =  new ArrayList<Agente>();//(String) vAgentes.add(new Espionaje("Javier", 58, "calle", 154564));
 
 //Iniciamos la aplicación.		
 		int opc = 0;
