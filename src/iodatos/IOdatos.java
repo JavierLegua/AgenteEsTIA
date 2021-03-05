@@ -396,7 +396,7 @@ public class IOdatos {
 	 * @return 
 	 */
 
-	public static ArrayList<Agente> anadirAgente(ArrayList<Agente> vAgentes) {
+	public static void anadirAgente(ArrayList<Agente> vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
 
@@ -442,12 +442,8 @@ public class IOdatos {
 			
 		 else {
 			// Como el tipo no es ni jefazo ni 007 solo queda 1 tipo de agente.
-			for (int i = 0; i < vAgentes.size(); i++) {
 					vAgentes.add(new Espionaje(nombre, edad, direccion, salario));
-					break;
-				}
 			}
-		return vAgentes;
 		}
 
 	// Metodo que borra todos los datos una vez salgamos de la aplicacion
