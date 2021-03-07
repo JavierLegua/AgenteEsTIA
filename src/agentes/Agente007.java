@@ -1,6 +1,7 @@
 package agentes;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 /**
  * 
  *@author Javier Legua y Oscar Magallon
@@ -10,7 +11,7 @@ import java.io.Serializable;
 public final class Agente007 extends Agente implements Serializable{
 
 	protected int numBajas;
-	protected String[] vArmas;
+	protected ArrayList<String> vArmas;
 /**
  * 
  * @param nombre del agente 007
@@ -42,15 +43,15 @@ public final class Agente007 extends Agente implements Serializable{
  * 
  * @return numero de armas en posesion
  */
-	public String[] getvArmas() {
+	public ArrayList<String> getvArmas() {
 		return vArmas;
 	}
 /**
  * 
  * @param vArmas del agente
  */
-	public void setvArmas(String[] vArmas) {
-		this.vArmas = vArmas;
+	public void setvArmas(ArrayList<String>vArmas) {
+		this.vArmas=vArmas;
 	}
 
 	@Override

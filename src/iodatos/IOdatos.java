@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import agentes.Agente;
@@ -140,9 +141,9 @@ public class IOdatos {
 	 * @param rutaFichero recibe la ruta del fichero
 	 * @return devuelve un vector con los datos cargados
 	 */
-	public static String[] cargarDatosFicherosTexto(String rutaFichero) {
+	public static ArrayList<String> cargarDatosFicherosTexto(String rutaFichero) {
 
-		String[] vDatos = new String[10];
+		ArrayList<String> vDatos = new ArrayList();
 		int cont = 0;
 
 		File f = new File(rutaFichero);
@@ -159,7 +160,7 @@ public class IOdatos {
 
 			while (leer.hasNext()) {
 				String linea = leer.nextLine();
-				vDatos[cont] = linea;
+				vDatos.add(linea);
 				cont++;
 			}
 
@@ -179,7 +180,7 @@ public class IOdatos {
  */
 
 	
-	public static void verAgentes(Agente[] vAgentes) {
+	public static void verAgentes(ArrayList<Agente> vAgentes) {
 
 		for (Agente a : vAgentes) {
 			if (a != null) {
@@ -196,7 +197,7 @@ public class IOdatos {
 	 */
 
 
-	public static void EncriptarAgentes(String rutaFichero, Agente vAgentes[]) {
+	public static void EncriptarAgentes(String rutaFichero, ArrayList<Agente> vAgentes) {
 
 		File f = new File(rutaFichero);
 
@@ -211,9 +212,8 @@ public class IOdatos {
 		try (FileOutputStream fi = new FileOutputStream(f); ObjectOutputStream escribir = new ObjectOutputStream(fi)) {
 
 			for (Agente a : vAgentes) {
-				if (a != null) {
 					escribir.writeObject(a);
-				}
+				
 			}
 
 		} catch (FileNotFoundException e) {
@@ -259,19 +259,18 @@ public class IOdatos {
 				FileOutputStream fr = new FileOutputStream(fp);
 				DataOutputStream escribir1 = new DataOutputStream(fr)) {
 
-			String vArmas[] = cargarDatosFicherosTexto("Armas.txt");
-			String vPisos[] = cargarDatosFicherosTexto("Pisos.txt");
+			ArrayList<String>vArmas = cargarDatosFicherosTexto("Armas.txt");
+			ArrayList<String>vPisos = cargarDatosFicherosTexto("Pisos.txt");
 
 			for (String s : vArmas) {
-				if (s != null) {
+			
 					escribir.writeUTF(s);
-				}
+				
 			}
 
 			for (String sa : vPisos) {
-				if (sa != null) {
 					escribir1.writeUTF(sa);
-				}
+				
 			}
 
 		} catch (FileNotFoundException e) {
@@ -340,7 +339,7 @@ public class IOdatos {
 		
 		try (FileInputStream fr1 = new FileInputStream(pisos);
 				DataInputStream leer1 = new DataInputStream(fr1);
-					FileWriter ff1 = new FileWriter(f);
+					FileWriter ff1 = new FileWriter(fp);
 					PrintWriter escribir1 = new PrintWriter(ff1)) {
 
 				while(true) {
@@ -369,7 +368,7 @@ public class IOdatos {
 	 * @param vAgentes recibe el parametro 
 	 * descripcion-> Demuestra por pantalla los agentes que ganen mas de un numero
 	 */
-	public static void salario(Agente[] vAgentes) {
+	public static void salario(ArrayList<Agente> vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
 		int filtrado = 0;
@@ -379,14 +378,45 @@ public class IOdatos {
 		System.out.println("Escribe un numero");
 		filtrado = leer.nextInt();
 
-		for (int i = 0; i < vAgentes.length; i++) {
-			if ((vAgentes[i] != null) && (filtrado < vAgentes[i].getSalario())) {
-				System.out.println(vAgentes[i].getNombre() + " " + vAgentes[i].getSalario());
+		for (int i = 0; i < vAgentes.size(); i++) {
+			if ((filtrado < vAgentes.get(i).getSalario())) {
+				System.out.println(vAgentes.get(i).getNombre() + " " + vAgentes.get(i).getSalario());
 				System.out.println();
 
 			}
 		}
 
+	}
+	
+	public static ArrayList<Agente> leerAgente() {
+		ArrayList<Agente> vAgentes = new ArrayList<Agente>();
+		File f = new File ("Agentes.dat");
+		
+		
+		if (!f.exists()) {
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		try (FileInputStream fi = new FileInputStream(f); ObjectInputStream leer = new ObjectInputStream(fi);) {
+
+			while(true) {
+				vAgentes.add((Agente) leer.readObject());
+			}
+				
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Fin de lectura de agentes.dat");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return vAgentes;
 	}
 	/**
 	 * 
@@ -394,9 +424,10 @@ public class IOdatos {
 	 * descripcion -> Pregunta por el tipo de agente añadir,
 	 * pregunta sus caracteristicas depende del agente
 	 * y carga la informacion en la primera posicion libre del vector
+	 * @return 
 	 */
 
-	public static void anadirAgente(Agente[] vAgentes) {
+	public static void anadirAgente(ArrayList<Agente> vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
 
@@ -417,44 +448,41 @@ public class IOdatos {
 		edad = leer.nextInt();
 		System.out.println("Dime el salario del agente.");
 		salario = leer.nextDouble();
-
+		//1
+		
 		// Ahora dependiendo del tipo de agente que nos han pasado haremos unas cosas
 		// distintas.
-		if (tipoAgente.equalsIgnoreCase("jefazo")) {
+		if (tipoAgente.equalsIgnoreCase("jefazo")) //2
+			{
 			System.out.println("Dime el tiempo de mandato del jefazo.");
 			tiempo_mandato = leer.nextInt();
-
+			
 			// Comprobamos cual es la primera posicion vacia en el vector y guardamos un
 			// nuevo agente en el.
-			for (int i = 0; i < vAgentes.length; i++) {
-				if (vAgentes[i] == null) {
-					vAgentes[i] = new Jefazo(nombre, edad, direccion, salario, tiempo_mandato);
-					break;
-				}
-			}
-		} else if (tipoAgente.equalsIgnoreCase("007")) {
+			
+				vAgentes.add(new Jefazo(nombre, edad, direccion, salario, tiempo_mandato));
+				
+				//3
+			
+			
+		} else if (tipoAgente.equalsIgnoreCase("007")) {//4
 			System.out.println("Dime el número de bajas que tiene este Agente007.");
 			contadorMuertes = leer.nextInt();
 
 			// Comprobamos cual es la primera posicion vacia en el vector y guardamos un
 			// nuevo agente en el.
-			for (int i = 0; i < vAgentes.length; i++) {
-				if (vAgentes[i] == null) {
-					vAgentes[i] = new Agente007(nombre, edad, direccion, salario, contadorMuertes);
-					break;
+				
+			vAgentes.add(new Agente007(nombre, edad, direccion, salario, contadorMuertes));	
+			//5
 				}
-			}
-		} else {
+			
+		 else {
 			// Como el tipo no es ni jefazo ni 007 solo queda 1 tipo de agente.
-			for (int i = 0; i < vAgentes.length; i++) {
-				if (vAgentes[i] == null) {
-					vAgentes[i] = new Espionaje(nombre, edad, direccion, salario);
-					break;
-				}
+					vAgentes.add(new Espionaje(nombre, edad, direccion, salario));
+					//6
 			}
 		}
-
-	}
+	//7
 
 	// Metodo que borra todos los datos una vez salgamos de la aplicacion
 	
@@ -477,5 +505,12 @@ public class IOdatos {
 
 		File borrarAgentesEncriptados = new File("Agentes.dat");
 		borrarAgentesEncriptados.delete();
+	}
+
+	public static void EncriptarTodo() {
+		ArrayList<String> vArmas = cargarDatosFicherosTexto("Armas.dat");
+		ArrayList<String> vPisos = cargarDatosFicherosTexto("Pisos.dat");
+		ArrayList<Agente> vAgentes ; 
+		
 	}
 }

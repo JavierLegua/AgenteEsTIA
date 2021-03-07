@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+
 import agentes.Agente;
 import agentes.Agente007;
 import agentes.Espionaje;
@@ -17,7 +19,7 @@ public class Main {
 	public static void main(String[] args) {
 
 //Creamos el vector de agentes y guardamos unos cuantos agentes.
-		Agente[] vAgentes = new Agente[10];
+		ArrayList<Agente> vAgentes = IOdatos.leerAgente();//(String) vAgentes.add(new Espionaje("Javier", 58, "calle", 154564));
 
 //Iniciamos la aplicación.		
 		int opc = 0;
@@ -28,6 +30,7 @@ public class Main {
 
 		do {
 			opc = IOdatos.pintarMenu();
+			
 
 			switch (opc) {
 			case 1:
@@ -44,10 +47,12 @@ public class Main {
 				break;
 			case 5:
 				IOdatos.anadirAgente(vAgentes);
+				IOdatos.EncriptarAgentes("Agentes.dat", vAgentes);
 				break;
 			case 6:
 				IOdatos.EncriptarArmasPisos();
 				IOdatos.EncriptarAgentes("Agentes.dat", vAgentes);
+				IOdatos.EncriptarTodo();
 				break;
 			case 7:
 				IOdatos.DesencriptarPisoArma();
