@@ -510,7 +510,7 @@ public class IOdatos {
 	public static void EncriptarTodo() {
 		ArrayList<String> vArmas = cargarDatosFicherosTexto("Armas.dat");
 		ArrayList<String> vPisos = cargarDatosFicherosTexto("Pisos.dat");
-		ArrayList<Agente> vAgentes  
+		ArrayList<Agente> vAgentes ; 
 		
 	}
 }
