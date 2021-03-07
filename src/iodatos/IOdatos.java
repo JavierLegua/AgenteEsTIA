@@ -17,6 +17,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.junit.jupiter.api.Test;
+
 import agentes.Agente;
 import agentes.Agente007;
 import agentes.Espionaje;
@@ -427,6 +429,8 @@ public class IOdatos {
 	 * @return 
 	 */
 
+	@Test
+	
 	public static void anadirAgente(ArrayList<Agente> vAgentes) {
 
 		Scanner leer = new Scanner(System.in);
