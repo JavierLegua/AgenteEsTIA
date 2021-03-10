@@ -21,7 +21,7 @@ public class Main {
 //Creamos el vector de agentes y guardamos unos cuantos agentes.
 		ArrayList<Agente> vAgentes = IOdatos.leerAgente();//(String) vAgentes.add(new Espionaje("Javier", 58, "calle", 154564));
 
-//Iniciamos la aplicación.		
+//Iniciamos la aplicacion	
 		int opc = 0;
 		boolean salir = false;
 
@@ -40,18 +40,18 @@ public class Main {
 				IOdatos.salario(vAgentes);
 				break;
 			case 3:
-				IOdatos.anadirPiso("Pisos.txt");
+				IOdatos.anadirPiso("Recursos/Pisos.txt");
 				break;
 			case 4:
-				IOdatos.anadirArma("Armas.txt");
+				IOdatos.anadirArma("Recursos/Armas.txt");
 				break;
 			case 5:
 				IOdatos.anadirAgente(vAgentes);
-				IOdatos.EncriptarAgentes("Agentes.dat", vAgentes);
+				IOdatos.EncriptarAgentes("Recursos/Agentes.dat", vAgentes);
 				break;
 			case 6:
 				IOdatos.EncriptarArmasPisos();
-				IOdatos.EncriptarAgentes("Agentes.dat", vAgentes);
+				IOdatos.EncriptarAgentes("Recursos/Agentes.dat", vAgentes);
 				IOdatos.EncriptarTodo();
 				break;
 			case 7:

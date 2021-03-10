@@ -23,7 +23,7 @@ public final class Espionaje extends Agente implements Serializable {
 	 */
 	public Espionaje(String nombre, int edad, String direccion, double salario) {
 		super(nombre, edad, direccion, salario);
-		this.vPisos = iodatos.IOdatos.cargarDatosFicherosTexto("Pisos.txt");
+		this.vPisos = iodatos.IOdatos.cargarDatosFicherosTexto("Recursos/Pisos.txt");
 	}
 
 	/**

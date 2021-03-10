@@ -95,7 +95,7 @@ public class IOdatos {
 		try (FileWriter esc = new FileWriter(f, true); PrintWriter escribir = new PrintWriter(esc);) {
 			Scanner leer = new Scanner(System.in);
 
-			if (rutaFichero.equalsIgnoreCase("Armas.txt")) {
+			if (rutaFichero.equalsIgnoreCase("Recursos/Armas.txt")) {
 				System.out.println("Que arma quieres anadir");
 				String arma = leer.next();
 				escribir.println(arma);
@@ -127,7 +127,7 @@ public class IOdatos {
 		try (FileWriter esc = new FileWriter(f, true); PrintWriter escribir = new PrintWriter(esc);) {
 			Scanner leer = new Scanner(System.in);
 
-			if (rutaFichero.equalsIgnoreCase("Pisos.txt")) {
+			if (rutaFichero.equalsIgnoreCase("Recursos/Pisos.txt")) {
 				System.out.println("Dime la direccion del piso.");
 				String piso = leer.next();
 				escribir.println(piso);
@@ -234,7 +234,7 @@ public class IOdatos {
 	 */
 	public static void EncriptarArmasPisos() {
 
-		File f = new File("Armas.dat");
+		File f = new File("Recursos/Armas.dat");
 
 		if (!f.exists()) {
 			try {
@@ -245,7 +245,7 @@ public class IOdatos {
 
 		}
 
-		File fp = new File("Pisos.dat");
+		File fp = new File("Recursos/Pisos.dat");
 
 		if (!fp.exists()) {
 			try {
@@ -261,8 +261,8 @@ public class IOdatos {
 				FileOutputStream fr = new FileOutputStream(fp);
 				DataOutputStream escribir1 = new DataOutputStream(fr)) {
 
-			ArrayList<String>vArmas = cargarDatosFicherosTexto("Armas.txt");
-			ArrayList<String>vPisos = cargarDatosFicherosTexto("Pisos.txt");
+			ArrayList<String>vArmas = cargarDatosFicherosTexto("Recursos/Armas.txt");
+			ArrayList<String>vPisos = cargarDatosFicherosTexto("Recursos/Pisos.txt");
 
 			for (String s : vArmas) {
 			
@@ -282,9 +282,9 @@ public class IOdatos {
 		}
 
 		// A la hora de encriptar borramos los ficheros sin encriptar
-		File borrarArmas = new File("Armas.txt");
+		File borrarArmas = new File("Recursos/Armas.txt");
 		borrarArmas.delete();
-		File borrarPisos = new File("Pisos.txt");
+		File borrarPisos = new File("Recursos/Pisos.txt");
 		borrarPisos.delete();
 
 	}
@@ -298,7 +298,7 @@ public class IOdatos {
 	public static void DesencriptarPisoArma() {
 
 
-		File f = new File("Armas.txt");
+		File f = new File("Recursos/Armas.txt");
 
 		if (!f.exists()) {
 			try {
@@ -309,7 +309,7 @@ public class IOdatos {
 
 		}
 
-		File fp = new File("Pisos.txt");
+		File fp = new File("Recursos/Pisos.txt");
 
 		if (!fp.exists()) {
 			try {
@@ -320,8 +320,8 @@ public class IOdatos {
 
 		}
 
-		File armas = new File("Armas.dat");
-		File pisos = new File("Pisos.dat");
+		File armas = new File("Recursos/Armas.dat");
+		File pisos = new File("Recursos/Pisos.dat");
 
 		try (FileInputStream fr = new FileInputStream(armas);
 			DataInputStream leer = new DataInputStream(fr);
@@ -392,7 +392,7 @@ public class IOdatos {
 	
 	public static ArrayList<Agente> leerAgente() {
 		ArrayList<Agente> vAgentes = new ArrayList<Agente>();
-		File f = new File ("Agentes.dat");
+		File f = new File ("Recursos/Agentes.dat");
 		
 		
 		if (!f.exists()) {
@@ -492,28 +492,28 @@ public class IOdatos {
 	
 	public static void borrarTodo() {
 
-		File borrarArmas = new File("Armas.txt");
+		File borrarArmas = new File("Recursos/Armas.txt");
 		borrarArmas.delete();
 
-		File borrarArmasEncriptadas = new File("Armas.dat");
+		File borrarArmasEncriptadas = new File("Recursos/Armas.dat");
 		borrarArmasEncriptadas.delete();
 
-		File borrarPisos = new File("Pisos.txt");
+		File borrarPisos = new File("Recursos/Pisos.txt");
 		borrarPisos.delete();
 
-		File borrarPisosEncriptados = new File("Pisos.dat");
+		File borrarPisosEncriptados = new File("Recursos/Pisos.dat");
 		borrarPisosEncriptados.delete();
 
-		File borrarAgentes = new File("Agentes.txt");
+		File borrarAgentes = new File("Recursos/Agentes.txt");
 		borrarAgentes.delete();
 
-		File borrarAgentesEncriptados = new File("Agentes.dat");
+		File borrarAgentesEncriptados = new File("Recursos/Agentes.dat");
 		borrarAgentesEncriptados.delete();
 	}
 
 	public static void EncriptarTodo() {
-		ArrayList<String> vArmas = cargarDatosFicherosTexto("Armas.dat");
-		ArrayList<String> vPisos = cargarDatosFicherosTexto("Pisos.dat");
+		ArrayList<String> vArmas = cargarDatosFicherosTexto("Recursos/Armas.dat");
+		ArrayList<String> vPisos = cargarDatosFicherosTexto("Recursos/Pisos.dat");
 		ArrayList<Agente> vAgentes ; 
 		
 	}

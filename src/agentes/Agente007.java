@@ -23,7 +23,7 @@ public final class Agente007 extends Agente implements Serializable{
 	public Agente007(String nombre, int edad, String direccion, double salario, int numBajas) {
 		super(nombre, edad, direccion, salario);
 		this.numBajas = numBajas;
-		this.vArmas = iodatos.IOdatos.cargarDatosFicherosTexto("Armas.txt");
+		this.vArmas = iodatos.IOdatos.cargarDatosFicherosTexto("Recursos/Armas.txt");
 	}
 /**
  * 
